@@ -29,18 +29,42 @@ public class Servlet_Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet_Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet_Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        String email = request.getParameter("correo");
+        String contraseña = request.getParameter("contraseña");
+
+        if (comprobarEmail(email) && comprobarContraseña(contraseña)) {
+            if (buscarEmail(email) && buscarContraseña(contraseña)) {
+                //TODO OK
+                //abrir pagina cliente
+            }
         }
+
+    }
+
+    //comprueba que el email sigue el patron
+    public boolean comprobarEmail(String pEmail) {
+        String pattern = "/^([a-zA-Z]+[a-zA-Z0-9._-]*)@{1}([a-zA-Z0-9\\.]{2,})\\.([a-zA-Z]{2,3})$/";
+        return pEmail.matches(pattern);
+    }
+
+    //Comprueba que la contraseña sigue el patron
+    public boolean comprobarContraseña(String pContraseña) {
+        //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";  
+        String pattern = "/^[a-zA-Z0-9]{4,16}$/";
+        return pContraseña.matches(pattern);
+    }
+
+    //buscar el email en la bd
+    public boolean buscarEmail(String email) {
+        //SIN HACER
+        return false;
+    }
+
+    //Buscar contraseña en la bd
+    public boolean buscarContraseña(String contraseña) {
+        //SIN HACER
+        return false;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
