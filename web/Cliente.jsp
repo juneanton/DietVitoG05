@@ -44,7 +44,7 @@
                     </li>
 
                     <!--CERRAR SESION!!!1-->
-                    <li onclick="cerrarSesion()" id = "CS" style="float:right" ><a href="IniciarSesion.html"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
+                    <li onclick="cerrarSesion()" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
                 </ul>
             </div>
         </nav>

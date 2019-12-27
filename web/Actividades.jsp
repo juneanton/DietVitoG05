@@ -14,7 +14,7 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body onload='iniciar();'>
+    <body>
         <header id="cabecera">
             <div>
                 <img src="img/dietvito.png">
@@ -39,7 +39,7 @@
                 
                 
                 <div id="elements">
-                    <table width="50%">
+                    <table width="50%" action="Actividades">
                         <caption>Actividades</caption>
                          <thead>
                              <tr>
