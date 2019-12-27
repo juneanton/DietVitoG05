@@ -38,6 +38,9 @@ public class Servlet_Login extends HttpServlet {
                 //TODO OK
                 //abrir pagina cliente
             }
+            else if(email.equals("diet@diet.eus") && contraseña.equals("diet2019")){
+                request.getRequestDispatcher("Dietista.jsp").forward(request,response);             
+            }
         }
 
     }
