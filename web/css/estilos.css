@@ -1,0 +1,174 @@
+/* 
+    Created on : 15 nov. 2019, 16:43:05
+    Author     : June
+*/
+
+
+/*COLORES: https://es.wikipedia.org/wiki/Anexo:Colores_por_orden_alfab%C3%A9tico
+https://htmlcolorcodes.com/es/
+*/
+/*COLOR LOGO DIETVITO #128B3E*/
+
+*{
+    margin:0px;
+    padding:0px;
+}
+
+header {
+    width: 96%;
+    padding: 0% 2%;
+    text-align: center;
+    background: linear-gradient(to right, rgba(5,138,5,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 65%, rgba(5,138,5,1) 100%);
+   }
+
+/*-----------IMAGEN DIETVITO HEADER-----------*/
+img{
+    width: 100px;
+    align-items: center;
+}
+
+/*-----------MENU PRINCIPAL-----------*/
+#menuprincipal {
+    width: 100%;
+    height: 50px;
+    background-color: #128B3E;
+}
+
+#menuprincipal li {
+    display: inline-block;
+    height: 35px;
+}
+
+#menuprincipal a {
+    font: bold 18px Arial, sans-serif;
+    color: black;
+    text-decoration: none;
+}
+#desple {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #128B3E;  /*COLOR DEL LOGO*/
+    text-align: center;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: white;
+}
+nav a{
+    text-decoration:none;
+    color:inherit;
+    font-size:14px;
+}
+            
+nav li{
+      display:inline-block;
+      text-align:center;
+      position:relative;
+}
+            
+nav li>ul{
+      display:none;
+}
+
+nav li:hover>ul{
+      display:block;
+      position:absolute;
+}
+
+#menuprincipal #desple{
+    display: none;
+}
+#menuprincipal #item:hover #desple{
+    display: block;
+}
+
+/*-----------PIE DE PAGINA-----------*/
+#pie {
+    width: 96%;
+    padding: 2%;
+    height: 20px;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+}
+#pie > div {
+    width: 96%;
+    padding: 0%;
+    background-color: white;
+    border-radius: 1px;
+    
+}
+
+
+/*-----------COLORES FORMULARIO-----------*/
+/*Mostraremos los campos requeridos de color gris*/
+form input:required {
+    border:2px solid grey;
+}
+/*Si el valor que el usuario escribe es valido, obtendra un color verde*/
+form input:valid{
+    border:2px solid green;
+}
+/*caso contrario, el color sera rojo*/
+form input:focus:invalid{
+    border:2px solid red;
+}
+
+
+/*-----------TAMAÑO IMAGEN-----------*/
+img.pequeña{
+  width: 20px; height: 20px;
+}
+img.grande{
+  width: 250px; /*height: 150px;*/
+}
+img.mediana{
+    width: 40px; height: 40px;
+}
+img.gigante{
+    width: 900px;
+}
+
+/*-----------BODY-----------*/
+body{
+    background-color: white;
+    line-height : 25px;
+    
+}
+
+
+/*-----------TABLAS-----------*/
+th {
+    background-color: black;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/*-----------INSERTAR FOTO-----------*/
+/*QUE SE ADAPTE LA FOTO A LA CAJA*/
+#caja {
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  border: 5px dashed green;
+  border-radius: 4px;
+  background: rgb(230,230,230);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#textoInicial{
+    font-family:Monaco,Georgia,Times,serif;
+    color: green;
+    /*font-family:Helvetica,Futura,Arial,Verdana,sans-serif;*/
+}
