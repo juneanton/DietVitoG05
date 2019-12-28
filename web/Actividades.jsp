@@ -65,9 +65,7 @@
                                     //conectamos a la bd
                                     public void jspInit() {
                                         con = BD.getConexion();
-                                    }
-
-                                    ;                      
+                                    }                      
                                 %>
                                 <%
                                     try {
