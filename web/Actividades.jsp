@@ -4,6 +4,11 @@
     Author     : June
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="utils.BD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +25,7 @@
                 <img src="img/dietvito.png">
             </div>
         </header>
-        
+
         <nav id = "menuprincipal">
             <ul class="menu">
                 <li><a style ="float:left" href="javascript:history.back()"><img class="pequeña" src="img/flecha.png" /></a></li>
@@ -30,19 +35,19 @@
                 <li style="float:right" ><a href="IniciarSesion.jsp" ><img class ="pequeña" src = "img/usuario.png">  Iniciar sesión</a></li>
             </ul>
         </nav>
-        
+
         <main>
             <div align="center">
                 <p></p>
                 <p id ="imagenActi"><img class="grande" src = "img/deporte2.png"/></p> 
                 <p></p>
-                
-                
+
+
                 <div id="elements">
                     <table width="50%" action="Actividades">
                         <caption>Actividades</caption>
-                         <thead>
-                             <tr>
+                        <thead>
+                            <tr>
                                 <th>Ejercicio</th>
                                 <th>Descripción</th>
                                 <th>Calorías</th>
@@ -51,7 +56,39 @@
                         </thead>
                         <tbody id="elementsList">
                             <tr>
-                                <td colspan="3">No hay datos</td>
+                                <td colspan="3">
+                                <%!
+                                    private Connection con;
+                                    private Statement stat;
+                                    private ResultSet result;
+
+                                    //conectamos a la bd
+                                    public void jspInit() {
+                                        con = BD.getConexion();
+                                    }
+
+                                    ;                      
+                                %>
+                                <%
+                                    try {
+                                        String nombre;
+                                        stat = con.createStatement();
+                                        String sql = "SELECT * FROM Actividad";
+                                        result = stat.executeQuery(sql);
+                                        //coger el siguiente
+                                        while (result.next()) {
+                                            nombre = result.getString("Nombre");
+                                %>                         
+                            <%=nombre%></td>
+                                    <%
+                                        //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                    }
+                                %>
                             </tr>
                         </tbody>
                     </table>
@@ -60,9 +97,9 @@
             </div>
         </main>
         <footer id="pie">
-         <hr/>   
-         &copy; Grupo 05. Análisis y diseño de sistemas de información
-         <a href="AcercaDe.jsp">Acerca de </a><img class="pequeña" src="img/FB.png"/><img class="pequeña" src="img/TW.png"/><img class="pequeña" src="img/insta.png"/>
+            <hr/>   
+            &copy; Grupo 05. Análisis y diseño de sistemas de información
+            <a href="AcercaDe.jsp">Acerca de </a><img class="pequeña" src="img/FB.png"/><img class="pequeña" src="img/TW.png"/><img class="pequeña" src="img/insta.png"/>
         </footer>
     </body>
 </html>
