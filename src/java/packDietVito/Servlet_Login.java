@@ -40,6 +40,7 @@ public class Servlet_Login extends HttpServlet {
                 request.getSession().setAttribute("contraseña", request.getParameter("contraseña"));
                 //cambia la pagina
                 //request.getRequestDispatcher("Dietista.jsp").forward(request,response); 
+                //System.out.println("muestra dietista");
                 response.sendRedirect("Dietista.jsp");
             }
             else if (buscarEmail(email) && buscarContraseña(contraseña)) {
