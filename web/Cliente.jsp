@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="packDietVito.Servlet_Login" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,8 +21,8 @@
                 <!--<h1>DietVito</h1>-->
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <a id ="holaU"><strong>Hola,  </strong></a> 
-                    <a onload="saludarUsuario();"></a>
+                    <a id ="holaU"><strong>Hola,  </strong></a> <%=email%> <!--hay que cambiar tiene que salir el nombre-->
+                    <!--<a onload="saludarUsuario();"></a>-->
                     <p id ="imagenU">imagen</p> 
                 </div> 
             </div>
