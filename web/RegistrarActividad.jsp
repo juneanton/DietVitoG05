@@ -70,7 +70,7 @@
                                 <option value="Futbol">Fútbol</option>
                             </select>
                         </p>
-                        <p>Fecha y hora de la actividad: <input type="datetime-local" name="fecha" id ="fecha" required></p>
+                        <p>Fecha y hora de la actividad: <input type="date" name="fecha" id ="fecha" required></p>
 
                         <p onclick="addActividad();"><button type="button" id="enviarActi">Aceptar</button></p>
                     </form>

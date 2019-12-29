@@ -56,7 +56,7 @@
                     <form name="informacion" method="get" action="procesar.php">
                        
                         <p><label>Cliente: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
-                        <p><label>Fecha: <input type="datetime-local" name="fecha" id = "fecha" required></label></p>
+                        <p><label>Fecha: <input type="date" name="fecha" id = "fecha" required></label></p>
                         <p><label>Peso: <input type="number" step="0.001" name="peso" id="peso" required></label></p>
 
                         <p onclick="addPeso();"><button type="button" id="enviarPeso">Aceptar</button></p>
