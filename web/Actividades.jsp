@@ -71,7 +71,7 @@
                                     try {
                                         String nombre, descripcion, calorias;
                                         stat = con.createStatement();
-                                        String sql = "SELECT * FROM actividad";
+                                        String sql = "SELECT Nombre, Descripcion, Calorias FROM actividad";
                                         result = stat.executeQuery(sql);
                                         //coger el siguiente
                                         while (result.next()) {
@@ -79,7 +79,9 @@
                                             descripcion = result.getString("Descripcion");
                                             calorias = result.getString("Calorias");
                                 %>                         
-                                <%=nombre%></td><td><%=descripcion%></td><td><%=calorias%></td>
+                            <tr><td><%=nombre%></td>
+                                <td><%=descripcion%></td>
+                                <td><%=calorias%></td></tr>
                                     <%
                                         //cerramos el while
                                         }
