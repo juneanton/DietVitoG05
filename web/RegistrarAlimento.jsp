@@ -16,13 +16,11 @@
     </head>
     <body>
         <header id="cabecera">
-            <div>
-               
+            <div>    
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <a id ="holaU"><strong>Hola,  </strong></a> 
-                    <a onload="saludarUsuario();"></a> 
-                   
+                    <a onload="saludarUsuario();"></a>                   
                     <p id ="imagenU">imagen</p>  
                 </div> 
             </div>
