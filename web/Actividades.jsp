@@ -69,7 +69,8 @@
                                 %>
                                 <%
                                     try {
-                                        String nombre, descripcion, calorias;
+                                        String nombre, descripcion;
+                                        int calorias;
                                         stat = con.createStatement();
                                         String sql = "SELECT Nombre, Descripcion, Calorias FROM actividad";
                                         result = stat.executeQuery(sql);
@@ -77,7 +78,7 @@
                                         while (result.next()) {
                                             nombre = result.getString("Nombre");
                                             descripcion = result.getString("Descripcion");
-                                            calorias = result.getString("Calorias");
+                                            calorias = result.getInt("Calorias");
                                 %>                         
                             <tr><td><%=nombre%></td>
                                 <td><%=descripcion%></td>
