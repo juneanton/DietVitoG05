@@ -94,7 +94,8 @@ public class Servlet_Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("Dietista.jsp");
+        processRequest(request, response);
+        //response.sendRedirect("Dietista.jsp");
     }
 
     /**
@@ -108,7 +109,7 @@ public class Servlet_Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**
