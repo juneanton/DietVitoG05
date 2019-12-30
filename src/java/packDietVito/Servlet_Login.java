@@ -31,9 +31,10 @@ public class Servlet_Login extends HttpServlet {
         
         String email = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
-        response.sendRedirect("Dietista.jsp");
+        
+        //response.sendRedirect("Dietista.jsp");
+        
         if (comprobarEmail(email) && comprobarContraseña(contraseña)) {
-            System.out.println("Entracomprobar");
             if(email.equals("diet@diet.eus") && contraseña.equals("diet2019")){
                 //TODO OK, es el dietista
                 System.out.println("Entradiet");
@@ -42,7 +43,6 @@ public class Servlet_Login extends HttpServlet {
                 request.getSession().setAttribute("contraseña", request.getParameter("contraseña"));
                 //cambia la pagina
                 //request.getRequestDispatcher("Dietista.jsp").forward(request,response); 
-                //System.out.println("muestra dietista");
                 response.sendRedirect("Dietista.jsp");
             }
             else if (buscarEmail(email) && buscarContraseña(contraseña)) {
