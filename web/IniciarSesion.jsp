@@ -46,7 +46,7 @@
                 <section id="FormularioIS">
                     <form name="informacion" method="post" action="Login">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
-                        <p><label>Contraseña <img class = "pequeña" src="img/candado.png">: <input type="password" name="contraseña" id="contraseña" required placeholder ="Contraseña"></label></p>
+                        <p><label>Contraseña <img class = "pequeña" src="img/candado.png">: <input type="password" name="pass" id="pass" required placeholder ="Contraseña"></label></p>
                         <p><button type="submit" id="btnIS">Aceptar</button></p>
                     </form>
                 </section>

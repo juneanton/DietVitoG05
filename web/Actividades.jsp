@@ -90,6 +90,7 @@
                                         stat.close();
                                     } catch (Exception ex) {
                                         System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
                                     }
                                 %>
                             </tr>
