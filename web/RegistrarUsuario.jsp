@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Registrar Usuario</title>
+        <link rel="stylesheet" href="css/estilos.css">
         <!--<script src="js/registrarUsuario.js"></script>-->
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
