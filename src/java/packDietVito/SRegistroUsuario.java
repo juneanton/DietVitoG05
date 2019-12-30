@@ -11,16 +11,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.BD;
 
 /**
  *
  * @author June
  */
-public class Servlet_RegistroUsuario extends HttpServlet {
+public class SRegistroUsuario extends HttpServlet {
 
     private Connection con;
     private Statement set;
@@ -38,14 +41,18 @@ public class Servlet_RegistroUsuario extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("aqui");
         String email = request.getParameter("correo");
-        String contraseña = request.getParameter("contraseña");
+        String contrasena = request.getParameter("contrasena");
         String nombre = request.getParameter("nombre");
         String pesoI = request.getParameter("peso");
         String altura = request.getParameter("altura");
         //foto?
+        
+        
         boolean existe = false;
         try {
+            con = BD.getConexion();
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM usuario");
             while (rs.next()) {
@@ -68,13 +75,15 @@ public class Servlet_RegistroUsuario extends HttpServlet {
             }
             else {
                 set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contraseña + "', '"+ pesoI +"', '"+ altura +"')");
+                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"')");
             }
+            response.sendRedirect("RegistrarUsuario.jsp");
         }
         catch (SQLException ex2) {
             System.out.println("No inserta en la tabla usuarios" + ex2);
+        } catch (IOException ex) {
+            Logger.getLogger(SRegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,9 +120,9 @@ public class Servlet_RegistroUsuario extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+//    @Override
+//    public String getServletInfo() {
+//        return "Short description";
+//    }// </editor-fold>
 
 }

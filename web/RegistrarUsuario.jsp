@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="packDietVito.SRegistroUsuario" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,13 +16,13 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body onload='iniciar();'>
+    <body>
         <header id="cabecera">
             <div>
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <p><strong>Hola Dietista</strong></p>
-                    <p id ="imagenD">imagen</p> 
+                    <!--<p id ="imagenD">imagen</p>--> 
                 </div>    
             </div>
         </header>
@@ -50,15 +51,15 @@
             <div align="center">
                 <a> Registra al nuevo usuario de DietVito con sus datos: </a>
                 <section id="FormularioRU">
-                    <form name="informacion" method="get" action="RegistroUsuario">
+                    <form name="informacion" method="post" action="RegistroUsuario">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
-                        <p><label>Contraseña: <input type="password" name="contraseña" id="contraseña" autocomplete="off" required></label></p>
+                        <p><label>Contraseña: <input type="password" name="contrasena" id="contrasena" autocomplete="off" required></label></p>
                         <p><label>Nombre: <input type="text" name="nombre" id="nombre" required></label></p>
                         <p><label>Peso Inicial: <input type="number" name="peso" id="peso" step="0.001" required></label>kg.</p> 
                         <p><label>Altura: <input type="number" name="altura" id="altura" step="0.001" required></label>cm.</p> 
 
                         <p>Añada una imagen suya:</p><img id="foto">
-                        <p><button type="button" id="enviar">Aceptar</button></p>
+                        <p><button type="submit" id="enviar">Aceptar</button></p>
                         <div id="caja" ></div>
 
                     </form>
