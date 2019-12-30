@@ -30,31 +30,28 @@ public class Servlet_Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String email = request.getParameter("correo");
         String contra = request.getParameter("pass");
         System.out.println(email);
         System.out.println(contra);
-        //response.sendRedirect("Dietista.jsp");
-        
+        // response.sendRedirect("Dietista.jsp");
+
         if (comprobarEmail(email) && comprobarContraseña(contra)) {
-            if(email.equals("diet@diet.eus") && contra.equals("diet2019")){
+            if (email.equals("diet@diet.eus") && contra.equals("diet2019")) {
                 //TODO OK, es el dietista
                 //guarda los datos
-                System.out.println("entra");
-//                HttpSession s = request.getSession();
-//                s.setAttribute("email", request.getParameter("correo"));
-                
-                System.out.println("despues de fguardar datos");
+                HttpSession s = request.getSession();
+                s.setAttribute("email", request.getParameter("correo"));
+
                 //cambia la pagina
                 //request.getRequestDispatcher("Dietista.jsp").forward(request,response); 
                 response.sendRedirect("Dietista.jsp");
-            }
-            else if (buscarEmail(email) && buscarContraseña(contra)) {
+            } else if (buscarEmail(email) && buscarContraseña(contra)) {
                 //TODO OK, es el cliente
                 //guarda los datos
-                request.getSession().setAttribute("email", request.getParameter("correo"));
-                request.getSession().setAttribute("contraseña", request.getParameter("contraseña"));
+                HttpSession s = request.getSession();
+                s.setAttribute("email", request.getParameter("correo"));
                 //cambia la pagina
                 //request.getRequestDispatcher("Cliente.jsp").forward(request,response); 
                 response.sendRedirect("Cliente.jsp");
@@ -64,14 +61,17 @@ public class Servlet_Login extends HttpServlet {
 
     //comprueba que el email sigue el patron
     public boolean comprobarEmail(String pEmail) {
-        String pattern = "/^([a-zA-Z]+[a-zA-Z0-9._-]*)@{1}([a-zA-Z0-9\\.]{2,})\\.([a-zA-Z]{2,3})$/";
+        //String pattern = "/^([a-zA-Z]+[a-zA-Z0-9._-]*)@{1}([a-zA-Z0-9\\.]{2,})\\.([a-zA-Z]{2,3})$/";
+        String pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return pEmail.matches(pattern);
     }
 
     //Comprueba que la contraseña sigue el patron
     public boolean comprobarContraseña(String pContraseña) {
         //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";  
-        String pattern = "/^[a-zA-Z0-9]{4,16}$/";
+        //String pattern = "/^[a-zA-Z0-9]{4,16}$/";
+        String pattern = "[a-z0-9]{4,10}";
         return pContraseña.matches(pattern);
     }
 
@@ -126,5 +126,4 @@ public class Servlet_Login extends HttpServlet {
 //    public String getServletInfo() {
 //        return "Short description";
 //    }// </editor-fold>
-
 }
