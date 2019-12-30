@@ -68,7 +68,7 @@ public class Servlet_RegistroUsuario extends HttpServlet {
             }
             else {
                 set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"', '"+ contraseña + "', '"+ pesoI +"', '"+ altura +"')");
+                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contraseña + "', '"+ pesoI +"', '"+ altura +"')");
             }
         }
         catch (SQLException ex2) {

@@ -50,7 +50,7 @@
             <div align="center">
                 <a> Registra al nuevo usuario de DietVito con sus datos: </a>
                 <section id="FormularioRU">
-                    <form name="informacion" method="get" action="procesar.php">
+                    <form name="informacion" method="get" action="RegistroUsuario">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p><label>Contraseña: <input type="password" name="contraseña" id="contraseña" autocomplete="off" required></label></p>
                         <p><label>Nombre: <input type="text" name="nombre" id="nombre" required></label></p>
@@ -58,7 +58,7 @@
                         <p><label>Altura: <input type="number" name="altura" id="altura" step="0.001" required></label>cm.</p> 
 
                         <p>Añada una imagen suya:</p><img id="foto">
-                        <p onclick="add();limpiar();"><button type="button" id="enviar" onclick="limpiar();">Aceptar</button></p>
+                        <p><button type="button" id="enviar">Aceptar</button></p>
                         <div id="caja" ></div>
 
                     </form>
