@@ -4,7 +4,12 @@
     Author     : June
 --%>
 
+<%@page import="utils.BD"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="packDietVito.Servlet_Actividades" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +19,7 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body onload='iniciar();'> 
+    <body> 
         <header id="cabecera">
             <div>
                
@@ -23,7 +28,7 @@
                     <a id ="holaU"><strong>Hola,  </strong></a> 
                     <a onload="saludarUsuario();"></a> 
                     
-                    <p id ="imagenU">imagen</p> 
+                    <!--<p id ="imagenU">imagen</p>--> 
                 </div> 
             </div>
         </header>
@@ -57,22 +62,55 @@
                 <p></p>
                 <a> Registra las actividades que has realizado hoy: </a>
                 <section id="FormularioRA">
-                    <form name="informacion" method="get" action="procesar.php">
+                    <form name="informacion" method="get" action="SRActividades">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p><label for="listado">Actividades: </label>
                             <select id="opt" name="opt" required>
                                 
                                 <option selected value="0" disabled> Seleccione una: </option>
-                                <option value="Correr">Correr</option>
+                                <%!
+                                    private Connection con;
+                                    private Statement stat;
+                                    private ResultSet result;
+
+                                    //conectamos a la bd
+                                    public void jspInit() {
+                                        con = BD.getConexion();
+                                    }                      
+                                %>
+                                <%
+                                    try {
+                                        String nombre;
+                                       
+                                        stat = con.createStatement();
+                                        String sql = "SELECT Nombre FROM actividad";
+                                        result = stat.executeQuery(sql);
+                                        //coger el siguiente
+                                        while (result.next()) {
+                                            nombre = result.getString("Nombre");
+                                %>                         
+                            <option><%=nombre%><option>
+                              
+                                    <%
+                                        //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
+                                    }
+                                %>
+<!--                                <option value="Correr">Correr</option>
                                 <option value="Nadar">Nadar</option>
                                 <option value="Andar">Andar</option>
                                 <option value="Basket">Basket</option>
-                                <option value="Futbol">Fútbol</option>
+                                <option value="Futbol">Fútbol</option>-->
                             </select>
                         </p>
                         <p>Fecha y hora de la actividad: <input type="date" name="fecha" id ="fecha" required></p>
 
-                        <p onclick="addActividad();"><button type="button" id="enviarActi">Aceptar</button></p>
+                        <p onclick="addActividad();"><button type="submit" id="enviarActi">Aceptar</button></p>
                     </form>
                 </section>
             </div>
