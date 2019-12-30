@@ -46,7 +46,6 @@ public class Servlet_Actividades extends HttpServlet {
             while (rs.next()) {
                 String cad = rs.getString("Nombre");
                 cad = cad.trim();
-                //ESTO NO SE YO SI ES ASI
             }
             rs.close();
             set.close();
