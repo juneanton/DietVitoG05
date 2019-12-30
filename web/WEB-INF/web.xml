@@ -5,8 +5,8 @@
         <servlet-class>packDietVito.Servlet_Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Servlet_RegistroUsuario</servlet-name>
-        <servlet-class>packDietVito.Servlet_RegistroUsuario</servlet-class>
+        <servlet-name>SRegistroUsuario</servlet-name>
+        <servlet-class>packDietVito.SRegistroUsuario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_Actividades</servlet-name>
@@ -18,7 +18,7 @@
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Servlet_RegistroUsuario</servlet-name>
+        <servlet-name>SRegistroUsuario</servlet-name>
         <url-pattern>/RegistroUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
