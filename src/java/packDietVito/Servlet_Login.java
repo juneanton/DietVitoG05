@@ -5,12 +5,14 @@
  */
 package packDietVito;
 
+import java.awt.BorderLayout;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author June
@@ -30,22 +32,25 @@ public class Servlet_Login extends HttpServlet {
             throws ServletException, IOException {
         
         String email = request.getParameter("correo");
-        String contraseña = request.getParameter("contraseña");
-        response.sendRedirect("Dietista.jsp");
-        if (comprobarEmail(email) && comprobarContraseña(contraseña)) {
-            System.out.println("Entracomprobar");
-            if(email.equals("diet@diet.eus") && contraseña.equals("diet2019")){
+        String contra = request.getParameter("pass");
+        System.out.println(email);
+        System.out.println(contra);
+        //response.sendRedirect("Dietista.jsp");
+        
+        if (comprobarEmail(email) && comprobarContraseña(contra)) {
+            if(email.equals("diet@diet.eus") && contra.equals("diet2019")){
                 //TODO OK, es el dietista
-                System.out.println("Entradiet");
                 //guarda los datos
-                request.getSession().setAttribute("email", request.getParameter("correo"));
-                request.getSession().setAttribute("contraseña", request.getParameter("contraseña"));
+                System.out.println("entra");
+//                HttpSession s = request.getSession();
+//                s.setAttribute("email", request.getParameter("correo"));
+                
+                System.out.println("despues de fguardar datos");
                 //cambia la pagina
                 //request.getRequestDispatcher("Dietista.jsp").forward(request,response); 
-                //System.out.println("muestra dietista");
                 response.sendRedirect("Dietista.jsp");
             }
-            else if (buscarEmail(email) && buscarContraseña(contraseña)) {
+            else if (buscarEmail(email) && buscarContraseña(contra)) {
                 //TODO OK, es el cliente
                 //guarda los datos
                 request.getSession().setAttribute("email", request.getParameter("correo"));
@@ -117,9 +122,9 @@ public class Servlet_Login extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+//    @Override
+//    public String getServletInfo() {
+//        return "Short description";
+//    }// </editor-fold>
 
 }
