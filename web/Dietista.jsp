@@ -21,7 +21,11 @@
                
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <p><strong>Hola, Dietista</strong></p> 
+                    <%
+                        String email;
+                        email = request.getParameter("email");
+                     %>
+                    <p><strong>Hola, <%=email%></strong></p> 
                     <!--<p id ="imagenD">imagen</p>--> 
                 </div>                
             </div>

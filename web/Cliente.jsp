@@ -21,7 +21,11 @@
                 <!--<h1>DietVito</h1>-->
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <a id ="holaU"><strong>Hola,  </strong></a> <%=email%> <!--hay que cambiar tiene que salir el nombre-->
+                    <%
+                        String email;
+                        email = request.getParameter("email");
+                     %>
+                    <a id ="holaU"><strong>Hola, <%=email%> </strong></a>  <!--hay que cambiar tiene que salir el nombre-->
                     <!--<a onload="saludarUsuario();"></a>-->
                     <p id ="imagenU">imagen</p> 
                 </div> 
