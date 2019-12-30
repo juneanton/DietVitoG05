@@ -35,7 +35,6 @@ public class Servlet_Login extends HttpServlet {
         String contra = request.getParameter("pass");
         System.out.println(email);
         System.out.println(contra);
-        // response.sendRedirect("Dietista.jsp");
 
         if (comprobarEmail(email) && comprobarContraseña(contra)) {
             if (email.equals("diet@diet.eus") && contra.equals("diet2019")) {
@@ -45,7 +44,6 @@ public class Servlet_Login extends HttpServlet {
                 s.setAttribute("email", request.getParameter("correo"));
 
                 //cambia la pagina
-                //request.getRequestDispatcher("Dietista.jsp").forward(request,response); 
                 response.sendRedirect("Dietista.jsp");
             } else if (buscarEmail(email) && buscarContraseña(contra)) {
                 //TODO OK, es el cliente
@@ -53,7 +51,6 @@ public class Servlet_Login extends HttpServlet {
                 HttpSession s = request.getSession();
                 s.setAttribute("email", request.getParameter("correo"));
                 //cambia la pagina
-                //request.getRequestDispatcher("Cliente.jsp").forward(request,response); 
                 response.sendRedirect("Cliente.jsp");
             }
         }
