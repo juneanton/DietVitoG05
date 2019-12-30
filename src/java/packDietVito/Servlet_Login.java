@@ -31,10 +31,12 @@ public class Servlet_Login extends HttpServlet {
         
         String email = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
-
+        response.sendRedirect("Dietista.jsp");
         if (comprobarEmail(email) && comprobarContraseña(contraseña)) {
+            System.out.println("Entracomprobar");
             if(email.equals("diet@diet.eus") && contraseña.equals("diet2019")){
                 //TODO OK, es el dietista
+                System.out.println("Entradiet");
                 //guarda los datos
                 request.getSession().setAttribute("email", request.getParameter("correo"));
                 request.getSession().setAttribute("contraseña", request.getParameter("contraseña"));
@@ -92,7 +94,7 @@ public class Servlet_Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("Dietista.jsp");
     }
 
     /**
