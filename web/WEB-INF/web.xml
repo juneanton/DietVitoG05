@@ -12,6 +12,7 @@
         <servlet-name>Servlet_Actividades</servlet-name>
         <servlet-class>packDietVito.Servlet_Actividades</servlet-class>
     </servlet>
+    <!--mapeos-->
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -29,6 +30,7 @@
             30
         </session-timeout>
     </session-config>
+    <!--donde empieza la pagina-->
     <welcome-file-list>
         <welcome-file>Inicio.jsp</welcome-file>
     </welcome-file-list>
