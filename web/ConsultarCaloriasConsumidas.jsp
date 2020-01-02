@@ -4,6 +4,11 @@
     Author     : June
 --%>
 
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.BD"%>
+<%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -52,10 +57,10 @@
             <div align="center">
                 <a> Consultar los alimentos consumidos: </a>
                 <section id="FormularioCC">
-                    <form name="informacion" method="post" action="procesar.php"> 
+                    <form name="informacion" method="post" action="SAlimConsumidos"> 
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p>Desde: <input type="date" name="fechaI" id="fechaI" required> Hasta: <input type="date" name="fechaF" id="fechaF" required></p>
-                        <p onclick="existeUsu();"><button type="submit" id="enviar">Aceptar</button></p>
+                        <p><button type="submit" id="enviar">Aceptar</button></p>
                     </form>
                 </section>
                 
@@ -71,7 +76,55 @@
                         </thead>
                         <tbody id="elementsList">
                             <tr>
-                                <td colspan="3">No hay datos</td>
+                                <td colspan="3">
+                                    <%!
+                                        private Connection con;
+                                        private Statement stat;
+                                        private ResultSet result;
+
+                                        //conectamos a la bd
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+                                    %>
+                                    <%
+                                        try {
+                                            String ali, idUsu, miUsu;
+                                            miUsu = (String) request.getAttribute("miUsu");
+                                            int cal;
+                                            Date fecha, fechaI, fechaF;
+                                            fechaI = (Date) request.getAttribute("fechaI");
+                                            fechaF = (Date) request.getAttribute("fechaF");
+                                            stat = con.createStatement();
+//                                            LAS CALORIAAAAAS
+                                            String sql = "SELECT AlimentoIDAlimento, Calorias, IDFecha, UsuarioIDUsuario FROM consumoalimento";
+                                            result = stat.executeQuery(sql);
+                                            //coger el siguiente
+                                            while (result.next()) {
+                                                ali = result.getString("AlimentoIDAlimento");
+                                                cal = result.getInt("Calorias");
+                                                idUsu = result.getString("UsuarioIDUsuario");
+                                                fecha = result.getDate("IDFecha");
+                                                if (idUsu.equals(miUsu)) {
+                                                    //QUE PASA SI ES LA PROPIA FECHA??????
+                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                    %>  
+                            <tr><td><%=fecha%></td>
+                                <td><%=ali%></td>
+                                <td><%=cal%></td></tr>
+                                <%
+                                                    //cerramos ambos if
+                                                    }
+                                                }
+                                            //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
+                                    }
+                                %>
                             </tr>
                         </tbody>
                     </table>
