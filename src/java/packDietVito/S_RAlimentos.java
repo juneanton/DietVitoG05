@@ -7,10 +7,19 @@ package packDietVito;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.BD;
+import utils.metodos;
 
 /**
  *
@@ -18,6 +27,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class S_RAlimentos extends HttpServlet {
 
+    private Connection con;
+    private Statement set;
+    private ResultSet rs;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,18 +42,22 @@ public class S_RAlimentos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet S_RAlimentos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet S_RAlimentos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String idAli = request.getParameter("opt");
+        String idUsu = request.getParameter("correo");
+        String pfecha = request.getParameter("fecha");
+        //MOMENTO DEL DIA NO LO PEDIMOS!!!!
+        String momento = "";
+
+        Date fecha = metodos.convertir(pfecha);
+
+        try {
+            con = BD.getConexion();
+            set = con.createStatement();
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO consumoAlimento "
+                    + "(IDFecha, IDmomentoDia, AlimentoIDAlimento, UsuarioIDUsuario) VALUES ('" + fecha + "','" + momento + "', '" + idAli +"', '" + idUsu + "')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -70,7 +87,7 @@ public class S_RAlimentos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**

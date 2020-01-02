@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import utils.BD;
+import utils.metodos;
 
 /**
  *
@@ -32,16 +33,6 @@ public class S_RActividades extends HttpServlet {
     private Connection con;
     private Statement set;
     private ResultSet rs;
-
-    public static Date convertir(String fecha) {
-        String yyyy = fecha.substring(6);
-        String mm = fecha.substring(3, 5);
-        String dd = fecha.substring(0, 2);
-        fecha = yyyy + "-" + mm + "-" + dd;
-
-        Date date = Date.valueOf(fecha);
-        return date;
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,10 +49,11 @@ public class S_RActividades extends HttpServlet {
         String idUsu = request.getParameter("correo");
         String pfecha = request.getParameter("fecha");
 
-        Date fecha = convertir(pfecha);
+        Date fecha = metodos.convertir(pfecha);
 
         String c;
 
+        //ESTE TRY CREO QUE NO ES NECESARIO PARA REGISTRAR!! MIRAR Y SI ESO QUITARLO
         try {
             con = BD.getConexion();
             set = con.createStatement();
@@ -77,6 +69,8 @@ public class S_RActividades extends HttpServlet {
         }
 
         try {
+            con = BD.getConexion();
+            set = con.createStatement();
             set = con.createStatement();
             set.executeUpdate("INSERT INTO actividadrealizada "
                     + "(ActividadIDActividad, UsuarioIDUsuario, Fecha) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "')");
