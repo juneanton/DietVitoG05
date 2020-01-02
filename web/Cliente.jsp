@@ -21,6 +21,7 @@
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <%
+                        //ESTO NO ES ASI
                         String email;
                         email = request.getParameter("email");
                      %>
