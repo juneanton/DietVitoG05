@@ -24,7 +24,7 @@
                 <img src="img/dietvito.png">
             </div>
         </header>
-        
+
         <nav id = "menuprincipal">
             <ul class="menu">
                 <li><a style ="float:left" href="javascript:history.back()"><img class="pequeña" src="img/flecha.png" /></a></li>
@@ -34,14 +34,14 @@
                 <li style="float:right" ><a href="IniciarSesion.jsp" ><img class ="pequeña" src = "img/usuario.png">  Iniciar sesión</a></li>
             </ul>
         </nav>
-        
+
         <main>
             <div align="center">
-<!--                <p></p>
-                <p id ="imagenAlim"><img class="grande" src = "img/comida1.png"/></p> 
-                <p></p>-->
+                <!--                <p></p>
+                                <p id ="imagenAlim"><img class="grande" src = "img/comida1.png"/></p> 
+                                <p></p>-->
 
-
+                <p></p>
                 <div id="elements">
                     <table width="50%" action="Alimentos">
                         <caption>Alimentos</caption>
@@ -56,34 +56,34 @@
                         <tbody id="elementsList">
                             <tr>
                                 <td colspan="3">
-                                <%!
-                                    private Connection con;
-                                    private Statement stat;
-                                    private ResultSet result;
+                                    <%!
+                                        private Connection con;
+                                        private Statement stat;
+                                        private ResultSet result;
 
-                                    //conectamos a la bd
-                                    public void jspInit() {
-                                        con = BD.getConexion();
-                                    }                      
-                                %>
-                                <%
-                                    try {
-                                        String nombre, descripcion;
-                                        int calorias;
-                                        stat = con.createStatement();
-                                        String sql = "SELECT NombreAli, CaloriasAli, DescripcionAli FROM alimento";
-                                        result = stat.executeQuery(sql);
-                                        //coger el siguiente
-                                        while (result.next()) {
-                                            nombre = result.getString("NombreAli");
-                                            descripcion = result.getString("DescripcionAli");
-                                            calorias = result.getInt("CaloriasAli");
-                                %>                         
+                                        //conectamos a la bd
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+                                    %>
+                                    <%
+                                        try {
+                                            String nombre, descripcion;
+                                            int calorias;
+                                            stat = con.createStatement();
+                                            String sql = "SELECT NombreAli, CaloriasAli, DescripcionAli FROM alimento";
+                                            result = stat.executeQuery(sql);
+                                            //coger el siguiente
+                                            while (result.next()) {
+                                                nombre = result.getString("NombreAli");
+                                                descripcion = result.getString("DescripcionAli");
+                                                calorias = result.getInt("CaloriasAli");
+                                    %>                         
                             <tr><td><%=nombre%></td>
                                 <td><%=calorias%></td>
                                 <td><%=descripcion%></td></tr>
-                                    <%
-                                        //cerramos el while
+                                <%
+                                            //cerramos el while
                                         }
                                         result.close();
                                         stat.close();
