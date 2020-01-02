@@ -20,7 +20,6 @@
         <servlet-name>Servlet_Alimentos</servlet-name>
         <servlet-class>packDietVito.Servlet_Alimentos</servlet-class>
     </servlet>
-    <!--mapeos-->
     <servlet>
         <servlet-name>Servlet_Pesos</servlet-name>
         <servlet-class>packDietVito.Servlet_Pesos</servlet-class>
@@ -33,6 +32,7 @@
         <servlet-name>S_RAlimentos</servlet-name>
         <servlet-class>packDietVito.S_RAlimentos</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
