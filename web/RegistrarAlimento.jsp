@@ -102,7 +102,7 @@
                         </p>
                         <p>Fecha y hora de la comida: <input type="date" name="fecha" id ="fecha" required></p>
                         <p><label for="listado">Momento del dia: </label>
-                            <select id="opt" name="opt" required>
+                            <select id="opt2" name="opt2" required>
                                 
                                 <option selected value="0" disabled> Seleccione una: </option>
                                 <option value="D">Desayuno</option>

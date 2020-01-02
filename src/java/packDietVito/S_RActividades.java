@@ -47,10 +47,10 @@ public class S_RActividades extends HttpServlet {
             throws ServletException, IOException {
         String idAct = request.getParameter("opt");
         String idUsu = request.getParameter("correo");
-        String fecha = request.getParameter("fecha");
+        String fechaa = request.getParameter("fecha");
 
         //Date fecha = metodos.convertir(pfecha);
-        Date.valueOf(fecha);
+        Date fecha = Date.valueOf(fechaa);
         
         //String c;
 
@@ -70,10 +70,12 @@ public class S_RActividades extends HttpServlet {
 //        }
 
         try {
+            
+            System.out.println("aqui");
             con = BD.getConexion();
             set = con.createStatement();
-            set = con.createStatement();
-            System.out.println("aqui");
+            
+            
             set.executeUpdate("INSERT INTO actividadrealizada "
                     + "(ActividadIDActividad, UsuarioIDUsuario, Fecha) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "')");
             response.sendRedirect("RegistrarActividad.jsp");

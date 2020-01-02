@@ -53,7 +53,7 @@
                 <p></p>
                  <a> Registra los pesos de un usuario: </a>
                 <section id="FormularioRP">
-                    <form name="informacion" method="get" action="RPesos">
+                    <form name="informacion" method="post" action="RPesos">
                        
                         <p><label>Cliente: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p><label>Fecha: <input type="date" name="fecha" id = "fecha" required></label></p>
