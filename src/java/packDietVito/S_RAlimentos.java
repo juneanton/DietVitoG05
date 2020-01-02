@@ -46,7 +46,7 @@ public class S_RAlimentos extends HttpServlet {
         String idUsu = request.getParameter("correo");
         String pfecha = request.getParameter("fecha");
         //MOMENTO DEL DIA NO LO PEDIMOS!!!!
-        String momento = "";
+        String momento = request.getParameter("opt2");
 
         //Date fecha = metodos.convertir(pfecha);
         Date fecha = Date.valueOf(pfecha);
