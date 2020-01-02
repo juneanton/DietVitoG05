@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.BD;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Servlet_Pesos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            con = BD.getConexion();
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM peso");
             while (rs.next()) {
