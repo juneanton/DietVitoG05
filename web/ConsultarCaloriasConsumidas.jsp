@@ -48,12 +48,34 @@
             </ul>
         </nav>
         
-        <main id ="consultarActi">
+         <main id ="consultarCalo">
             <div align="center">
-                <p>Aqui apareceran las calorias consumidas durante las fechas seleccionadas:</p>
-                <img src ="img/error.png"/>
-                <p> ESTA SECCIÓN AÚN NO ESTÁ DISPONIBLE, SENTIMOS LAS MOLESTIAS.</p>
-                <img src="img/obras.png"/>
+                <a> Consultar los alimentos consumidos: </a>
+                <section id="FormularioCC">
+                    <form name="informacion" method="get" action="procesar.php"> 
+                        <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
+                        <p>Desde: <input type="datetime-local" name="fechaI" id="fechaI" required> Hasta: <input type="datetime-local" name="fechaF" id="fechaF" required></p>
+                        <p onclick="existeUsu();"><button type="submit" id="enviar">Aceptar</button></p>
+                    </form>
+                </section>
+                
+                <article id="elements">
+                    <table width="50%">
+                        <caption>Alimentos consumidos durante las fechas seleccionadas:</caption>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Alimento</th>
+                                <th>Calorías</th>
+                            </tr>
+                        </thead>
+                        <tbody id="elementsList">
+                            <tr>
+                                <td colspan="3">No hay datos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
             </div>
         </main>
         <footer id="pie">
