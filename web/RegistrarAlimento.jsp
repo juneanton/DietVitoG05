@@ -23,7 +23,7 @@
             <div>    
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <a id ="holaU"><strong>Hola,  </strong></a> <!--nombre--> 
+                    <a id ="holaU"><strong>Hola,  </strong></a> nombre
                     <!--<a onload="saludarUsuario();"></a>-->                   
                     <p id ="imagenU">imagen</p>  
                 </div> 
