@@ -4,6 +4,11 @@
     Author     : June
 --%>
 
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.BD"%>
+<%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -60,12 +65,62 @@
                 </section>
                 <article id="tablaCP">
                     <table width="50%">
-                        <p></p>
-                        <caption>Pesos durante las fechas seleccionadas:</caption>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Peso</th>
-                        </tr>
+                         <caption>Pesos durante las fechas seleccionadas:</caption>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Peso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="elementsList">
+                            <tr>
+                                <td colspan="3">
+                                    <%!
+                                        private Connection con;
+                                        private Statement stat;
+                                        private ResultSet result;
+
+                                        //conectamos a la bd
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+                                    %>
+                                    <%
+                                        try {
+                                            String idUsu, miUsu;
+                                            miUsu = (String) request.getAttribute("miUsu");
+                                            float peso;
+                                            Date fecha, fechaI, fechaF;
+                                            fechaI = (Date) request.getAttribute("fechaI");
+                                            fechaF = (Date) request.getAttribute("fechaF");
+                                            stat = con.createStatement();
+                                            String sql = "SELECT Peso, UsuarioIDUsuario, Fecha FROM peso";
+                                            result = stat.executeQuery(sql);
+                                            //coger el siguiente
+                                            while (result.next()) {
+                                                peso = result.getFloat("Peso");
+                                                idUsu = result.getString("UsuarioIDUsuario");
+                                                fecha = result.getDate("Fecha");
+                                                if (idUsu.equals(miUsu)) {
+                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                    %>  
+                            <tr><td><%=fecha%></td>
+                                <td><%=peso%></td></tr>
+                                <%
+                                                    //cerramos ambos if
+                                                    }
+                                                }
+                                            //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
+                                    }
+                                %>
+                            </tr>
+                        </tbody>
                     </table>
                 </article>
             </div>

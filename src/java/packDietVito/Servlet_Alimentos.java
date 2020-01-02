@@ -39,9 +39,9 @@ public class Servlet_Alimentos extends HttpServlet {
             throws ServletException, IOException {
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM actividad");
+            rs = set.executeQuery("SELECT * FROM alimento");
             while (rs.next()) {
-                String cad = rs.getString("Nombre");
+                String cad = rs.getString("NombreAli");
                 cad = cad.trim();
             }
             rs.close();

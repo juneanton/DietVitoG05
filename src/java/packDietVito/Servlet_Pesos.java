@@ -7,6 +7,10 @@ package packDietVito;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author June
  */
 public class Servlet_Pesos extends HttpServlet {
+
+    private Connection con;
+    private Statement set;
+    private ResultSet rs;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,18 +37,17 @@ public class Servlet_Pesos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet_Pesos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet_Pesos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM peso");
+            while (rs.next()) {
+                String cad = rs.getString("Peso");
+                cad = cad.trim();
+            }
+            rs.close();
+            set.close();
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Pesos. " + ex1);
         }
     }
 
@@ -70,7 +77,7 @@ public class Servlet_Pesos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**
