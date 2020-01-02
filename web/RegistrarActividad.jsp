@@ -101,7 +101,7 @@
                                         ex.printStackTrace();
                                     }
                                 %>
-<!--                                <option value="Correr">Correr</option>
+<!--                            <option value="Correr">Correr</option>
                                 <option value="Nadar">Nadar</option>
                                 <option value="Andar">Andar</option>
                                 <option value="Basket">Basket</option>

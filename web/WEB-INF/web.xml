@@ -5,14 +5,13 @@
         <servlet-class>packDietVito.Servlet_Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SRegistroUsuario</servlet-name>
-        <servlet-class>packDietVito.SRegistroUsuario</servlet-class>
+        <servlet-name>S_RUsuario</servlet-name>
+        <servlet-class>packDietVito.S_RUsuario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_Actividades</servlet-name>
         <servlet-class>packDietVito.Servlet_Actividades</servlet-class>
     </servlet>
-    <!--mapeos-->
     <servlet>
         <servlet-name>S_RActividades</servlet-name>
         <servlet-class>packDietVito.S_RActividades</servlet-class>
@@ -21,12 +20,17 @@
         <servlet-name>Servlet_Alimentos</servlet-name>
         <servlet-class>packDietVito.Servlet_Alimentos</servlet-class>
     </servlet>
+    <!--mapeos-->
+    <servlet>
+        <servlet-name>Servlet_Pesos</servlet-name>
+        <servlet-class>packDietVito.Servlet_Pesos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SRegistroUsuario</servlet-name>
+        <servlet-name>S_RUsuario</servlet-name>
         <url-pattern>/RegistroUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -40,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Alimentos</servlet-name>
         <url-pattern>/Alimentos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Pesos</servlet-name>
+        <url-pattern>/Pesos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

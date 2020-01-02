@@ -23,7 +23,7 @@ import utils.BD;
  *
  * @author June
  */
-public class SRegistroUsuario extends HttpServlet {
+public class S_RUsuario extends HttpServlet {
 
     private Connection con;
     private Statement set;
@@ -82,7 +82,7 @@ public class SRegistroUsuario extends HttpServlet {
         catch (SQLException ex2) {
             System.out.println("No inserta en la tabla usuarios" + ex2);
         } catch (IOException ex) {
-            Logger.getLogger(SRegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
