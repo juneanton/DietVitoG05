@@ -92,7 +92,7 @@
                                                 //NO FUNCIONA SIGUE SALIENDO PALABRAS SIN NADA
                                             
                                 %>                         
-                            <option><%=nombre%><option>
+                            <option><%=nombre%></option>
                               
                                     <%
                                             }

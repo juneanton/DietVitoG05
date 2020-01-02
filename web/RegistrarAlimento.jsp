@@ -86,7 +86,7 @@
                                         while (result.next()) {
                                             nombre = result.getString("NombreAli");
                                 %>                         
-                            <option><%=nombre%><option>
+                                <option><%=nombre%></option>
                               
                                     <%
                                         //cerramos el while
@@ -101,7 +101,15 @@
                             </select>
                         </p>
                         <p>Fecha y hora de la comida: <input type="date" name="fecha" id ="fecha" required></p>
-
+                        <p><label for="listado">Momento del dia: </label>
+                            <select id="opt" name="opt" required>
+                                
+                                <option selected value="0" disabled> Seleccione una: </option>
+                                <option value="D">Desayuno</option>
+                                <option value="A">Almuerzo/Comida</option>
+                                <option value="C">Cena</option>
+                            </select>
+                   
                         <p><button type="submit" id="enviarActi">Aceptar</button></p>
                     </form>
                 </section>
