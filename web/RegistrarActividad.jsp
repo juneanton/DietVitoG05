@@ -62,7 +62,7 @@
                 <p></p>
                 <a> Registra las actividades que has realizado hoy: </a>
                 <section id="FormularioRA">
-                    <form name="informacion" method="get" action="SRActividades">
+                    <form name="informacion" method="post" action="SRActividades">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p><label for="listado">Actividades: </label>
                             <select id="opt" name="opt" required>
@@ -88,10 +88,14 @@
                                         //coger el siguiente
                                         while (result.next()) {
                                             nombre = result.getString("Nombre");
+                                            if(nombre != ""){ //para que no coja blancos
+                                                //NO FUNCIONA SIGUE SALIENDO PALABRAS SIN NADA
+                                            
                                 %>                         
                             <option><%=nombre%><option>
                               
                                     <%
+                                            }
                                         //cerramos el while
                                         }
                                         result.close();
