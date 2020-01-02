@@ -46,7 +46,8 @@ public class S_RPesos extends HttpServlet {
         String pFecha = request.getParameter("fecha");
         String peso = request.getParameter("peso");
         
-        Date fecha = metodos.convertir(pFecha);
+        //Date fecha = metodos.convertir(pFecha);
+        Date fecha = Date.valueOf(pFecha);
         
         try {
             con = BD.getConexion();
