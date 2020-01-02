@@ -49,11 +49,32 @@
         
         <main id ="consultarCCU">
             <div align="center">
-                <p></p>
-                <P> Aqui podrás consultar los calorias que los usuarios han consumido </P>
-                <img src ="img/error.png"/>
-                <p> ESTA SECCIÓN AÚN NO ESTÁ DISPONIBLE, SENTIMOS LAS MOLESTIAS.</p>
-                <img src="img/obras.png"/>
+                <a> Consultar los alimentos: </a>
+                <section id="FormularioCC">
+                    <form name="informacion" method="get" action="procesar.php">
+                       <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
+                        <p>Desde: <input type="datetime" name="fechaI" id="fechaI" required> Hasta: <input type="datetime" name="fechaF" id="fechaF" required></p>
+                        <p onclick="existeUsu();"><button type="button" id="enviar">Aceptar</button></p>
+                    </form>
+                </section>
+                
+                <article id="elements">
+                    <table width="50%">
+                        <caption>Alimentos consumidos del usuario seleccionado durante las fechas seleccionadas:</caption>
+                       <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Alimento</th>
+                                <th>Calorías</th>
+                            </tr>
+                        </thead>
+                        <tbody id="elementsList">
+                            <tr>
+                                <td colspan="3">No hay datos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
             </div>
         </main>
         
