@@ -37,9 +37,9 @@
 
         <main>
             <div align="center">
-                <!--                <p></p>
-                                <p id ="imagenAlim"><img class="grande" src = "img/comida1.png"/></p> 
-                                <p></p>-->
+                <p></p>
+                <!--<p id ="imagenAlim"><img class="grande" src = "img/comida1.jpg"/></p>--> 
+                <p></p>
 
                 <p></p>
                 <div id="elements">
