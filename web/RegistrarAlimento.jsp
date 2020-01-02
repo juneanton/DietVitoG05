@@ -55,9 +55,9 @@
                 <div>
                     <p></p>
                 </div>
-                <p id = "imagenUsuario" ><img src = "img/deportes.png"/></p> 
+                <p id = "imagenComida" ><img src = "img/comida.png"/></p> 
                 <p></p>
-                <a> Registra las actividades que has realizado hoy: </a>
+                <a> Registra las comidas que has realizado hoy: </a>
                 <section id="FormularioRA">
                     <form name="informacion" method="get" action="RAlimentos">
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
@@ -80,11 +80,11 @@
                                         String nombre;
                                        
                                         stat = con.createStatement();
-                                        String sql = "SELECT Nombre FROM alimento";
+                                        String sql = "SELECT NombreAli FROM alimento";
                                         result = stat.executeQuery(sql);
                                         //coger el siguiente
                                         while (result.next()) {
-                                            nombre = result.getString("Nombre");
+                                            nombre = result.getString("NombreAli");
                                 %>                         
                             <option><%=nombre%><option>
                               
