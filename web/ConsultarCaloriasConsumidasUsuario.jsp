@@ -21,7 +21,7 @@
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <p><strong>Hola Dietista</strong></p>
-                    <!--<p id ="imagenD">imagen</p>-->
+                    <p id ="imagenD"><img class="normal" src="img/dietista_1.jpg"></p>
                 </div>  
                 
             </div>
