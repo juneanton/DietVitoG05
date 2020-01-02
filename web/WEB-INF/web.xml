@@ -17,6 +17,10 @@
         <servlet-name>S_RActividades</servlet-name>
         <servlet-class>packDietVito.S_RActividades</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Alimentos</servlet-name>
+        <servlet-class>packDietVito.Servlet_Alimentos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -32,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>S_RActividades</servlet-name>
         <url-pattern>/SRActividades</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Alimentos</servlet-name>
+        <url-pattern>/Alimentos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

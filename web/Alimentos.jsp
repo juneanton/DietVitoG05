@@ -4,6 +4,10 @@
     Author     : June
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="utils.BD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +18,7 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body background="img/comida1.png">
+    <body>
         <header id="cabecera">
             <div>
                 <img src="img/dietvito.png">
@@ -33,19 +37,72 @@
         
         <main>
             <div align="center">
-                <p></p>
-                
-                <P> Aqui apareceran los alimentos, descripcion y calorias</P>
-                <img src ="img/error.png"/>
-                <p> ESTA SECCIÓN AÚN NO ESTÁ DISPONIBLE, SENTIMOS LAS MOLESTIAS.</p>
-                <img src="img/obras.png"/>
+<!--                <p></p>
+                <p id ="imagenAlim"><img class="grande" src = "img/comida1.png"/></p> 
+                <p></p>-->
+
+
+                <div id="elements">
+                    <table width="50%" action="Alimentos">
+                        <caption>Alimentos</caption>
+                        <thead>
+                            <tr>
+                                <th>Alimento</th>
+                                <th>Calorias</th>
+                                <th>Descripción</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody id="elementsList">
+                            <tr>
+                                <td colspan="3">
+                                <%!
+                                    private Connection con;
+                                    private Statement stat;
+                                    private ResultSet result;
+
+                                    //conectamos a la bd
+                                    public void jspInit() {
+                                        con = BD.getConexion();
+                                    }                      
+                                %>
+                                <%
+                                    try {
+                                        String nombre, descripcion;
+                                        int calorias;
+                                        stat = con.createStatement();
+                                        String sql = "SELECT NombreAli, CaloriasAli, DescripcionAli FROM alimento";
+                                        result = stat.executeQuery(sql);
+                                        //coger el siguiente
+                                        while (result.next()) {
+                                            nombre = result.getString("NombreAli");
+                                            descripcion = result.getString("DescripcionAli");
+                                            calorias = result.getInt("CaloriasAli");
+                                %>                         
+                            <tr><td><%=nombre%></td>
+                                <td><%=calorias%></td>
+                                <td><%=descripcion%></td></tr>
+                                    <%
+                                        //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
+                                    }
+                                %>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p></p>                     
             </div>
         </main>
-        
         <footer id="pie">
-         <hr/>   
-         &copy; Grupo 05. Análisis y diseño de sistemas de información
-         <a href="AcercaDe.jsp">Acerca de </a><img class="pequeña" src="img/FB.png"/><img class="pequeña" src="img/TW.png"/><img class="pequeña" src="img/insta.png"/>
+            <hr/>   
+            &copy; Grupo 05. Análisis y diseño de sistemas de información
+            <a href="AcercaDe.jsp">Acerca de </a><img class="pequeña" src="img/FB.png"/><img class="pequeña" src="img/TW.png"/><img class="pequeña" src="img/insta.png"/>
         </footer>
     </body>
 </html>
