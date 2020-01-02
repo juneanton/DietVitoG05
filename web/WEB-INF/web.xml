@@ -25,6 +25,10 @@
         <servlet-name>Servlet_Pesos</servlet-name>
         <servlet-class>packDietVito.Servlet_Pesos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>S_RPesos</servlet-name>
+        <servlet-class>packDietVito.S_RPesos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Pesos</servlet-name>
         <url-pattern>/Pesos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>S_RPesos</servlet-name>
+        <url-pattern>/RPesos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

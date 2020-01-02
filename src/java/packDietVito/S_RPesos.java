@@ -8,6 +8,7 @@ package packDietVito;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,18 +19,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utils.BD;
+import utils.metodos;
 
 /**
  *
  * @author June
  */
-public class S_RUsuario extends HttpServlet {
+public class S_RPesos extends HttpServlet {
 
     private Connection con;
     private Statement set;
     private ResultSet rs;
-    
-    String c;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,49 +40,26 @@ public class S_RUsuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        //System.out.println("aqui");
-        String email = request.getParameter("correo");
-        String contrasena = request.getParameter("contrasena");
-        String nombre = request.getParameter("nombre");
-        String pesoI = request.getParameter("peso");
-        String altura = request.getParameter("altura");
-        //foto?
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String cliente = request.getParameter("correo");
+        String pFecha = request.getParameter("fecha");
+        String peso = request.getParameter("peso");
         
+        Date fecha = metodos.convertir(pFecha);
         
-        boolean existe = false;
         try {
             con = BD.getConexion();
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM usuario");
-            while (rs.next()) {
-                c = rs.getString("Email");
-                c = c.trim();
-                if (c.compareTo(email.trim()) == 0){
-                    existe = true;
-                }
-            }
+            
+            set.executeUpdate("INSERT INTO peso " 
+                        + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente +"','"+ peso + "', '"+ fecha +"')");
+            
             rs.close();
             set.close();
-        }
-        catch (SQLException ex1) {
-            System.out.println("No lee de la tabla usuario" + ex1);
-        }
-        try {
-            set = con.createStatement();
-            if (existe) {
-                System.out.println("Usuario ya registrado");
-            }
-            else {
-                set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"')");
-            }
-            response.sendRedirect("RegistrarUsuario.jsp");
-        }
-        catch (SQLException ex2) {
-            System.out.println("No inserta en la tabla usuarios" + ex2);
-        } catch (IOException ex) {
-            Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("RegistrarPesos.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -120,9 +97,9 @@ public class S_RUsuario extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-//    @Override
-//    public String getServletInfo() {
-//        return "Short description";
-//    }// </editor-fold>
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }
