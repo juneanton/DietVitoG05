@@ -18,15 +18,13 @@
     <body>
         <header id="cabecera">
             <div>
-                <!--<h1>DietVito</h1>-->
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <%
                         String email;
                         email = request.getParameter("email");
                      %>
-                    <a id ="holaU"><strong>Hola, <%=email%> </strong></a>  <!--hay que cambiar tiene que salir el nombre-->
-                    <!--<a onload="saludarUsuario();"></a>-->
+                    <a id ="holaU"><strong>Hola, <%=email%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
                     <p id ="imagenU">imagen</p> 
                 </div> 
             </div>
