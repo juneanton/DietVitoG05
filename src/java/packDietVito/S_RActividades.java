@@ -47,33 +47,36 @@ public class S_RActividades extends HttpServlet {
             throws ServletException, IOException {
         String idAct = request.getParameter("opt");
         String idUsu = request.getParameter("correo");
-        String pfecha = request.getParameter("fecha");
+        String fecha = request.getParameter("fecha");
 
-        Date fecha = metodos.convertir(pfecha);
-
-        String c;
+        //Date fecha = metodos.convertir(pfecha);
+        Date.valueOf(fecha);
+        
+        //String c;
 
         //ESTE TRY CREO QUE NO ES NECESARIO PARA REGISTRAR!! MIRAR Y SI ESO QUITARLO
-        try {
-            con = BD.getConexion();
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM actividad");
-            while (rs.next()) {
-                c = rs.getString("Nombre");
-                c = c.trim();
-            }
-            rs.close();
-            set.close();
-        } catch (SQLException ex1) {
-            System.out.println("No lee de la tabla Actividad. " + ex1);
-        }
+//        try {
+//            con = BD.getConexion();
+//            set = con.createStatement();
+//            rs = set.executeQuery("SELECT * FROM actividad");
+//            while (rs.next()) {
+//                c = rs.getString("Nombre");
+//                c = c.trim();
+//            }
+//            rs.close();
+//            set.close();
+//        } catch (SQLException ex1) {
+//            System.out.println("No lee de la tabla Actividad. " + ex1);
+//        }
 
         try {
             con = BD.getConexion();
             set = con.createStatement();
             set = con.createStatement();
+            System.out.println("aqui");
             set.executeUpdate("INSERT INTO actividadrealizada "
                     + "(ActividadIDActividad, UsuarioIDUsuario, Fecha) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "')");
+            response.sendRedirect("RegistrarActividad.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
         }

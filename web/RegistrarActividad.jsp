@@ -62,7 +62,7 @@
                 <p></p>
                 <a> Registra las actividades que has realizado hoy: </a>
                 <section id="FormularioRA">
-                    <form name="informacion" method="post" action="SRActividades">
+                    
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p><label for="listado">Actividades: </label>
                             <select id="opt" name="opt" required>
@@ -113,9 +113,9 @@
                             </select>
                         </p>
                         <p>Fecha y hora de la actividad: <input type="date" name="fecha" id ="fecha" required></p>
-
+                        
                         <p onclick="addActividad();"><button type="submit" id="enviarActi">Aceptar</button></p>
-                    </form>
+                    
                 </section>
             </div>
         </main>

@@ -44,12 +44,12 @@ public class S_RAlimentos extends HttpServlet {
             throws ServletException, IOException {
         String idAli = request.getParameter("opt");
         String idUsu = request.getParameter("correo");
-        String pfecha = request.getParameter("fecha");
+        String fecha = request.getParameter("fecha");
         //MOMENTO DEL DIA NO LO PEDIMOS!!!!
         String momento = "";
 
-        Date fecha = metodos.convertir(pfecha);
-
+        //Date fecha = metodos.convertir(pfecha);
+        Date.valueOf(fecha);
         try {
             con = BD.getConexion();
             set = con.createStatement();

@@ -13,9 +13,15 @@ import java.sql.Date;
  */
 public class metodos {
     public static Date convertir(String fecha) {
-        String yyyy = fecha.substring(6);
+        //fecha = dia-mes-año 02/01/2020
+        //String yyyy = fecha.substring(6);
+        //String mm = fecha.substring(3, 5);
+        //String dd = fecha.substring(0, 2);
+        
+        String yyyy = fecha.substring(6, 9);
         String mm = fecha.substring(3, 5);
         String dd = fecha.substring(0, 2);
+        
         fecha = yyyy + "-" + mm + "-" + dd;
 
         Date date = Date.valueOf(fecha);

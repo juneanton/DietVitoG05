@@ -56,34 +56,34 @@
                         <tbody id="elementsList">
                             <tr>
                                 <td colspan="3">
-                                <%!
-                                    private Connection con;
-                                    private Statement stat;
-                                    private ResultSet result;
+                                    <%!
+                                        private Connection con;
+                                        private Statement stat;
+                                        private ResultSet result;
 
-                                    //conectamos a la bd
-                                    public void jspInit() {
-                                        con = BD.getConexion();
-                                    }                      
-                                %>
-                                <%
-                                    try {
-                                        String nombre, descripcion;
-                                        int calorias;
-                                        stat = con.createStatement();
-                                        String sql = "SELECT Nombre, Descripcion, Calorias FROM actividad";
-                                        result = stat.executeQuery(sql);
-                                        //coger el siguiente
-                                        while (result.next()) {
-                                            nombre = result.getString("Nombre");
-                                            descripcion = result.getString("Descripcion");
-                                            calorias = result.getInt("Calorias");
-                                %>                         
+                                        //conectamos a la bd
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+                                    %>
+                                    <%
+                                        try {
+                                            String nombre, descripcion;
+                                            int calorias;
+                                            stat = con.createStatement();
+                                            String sql = "SELECT Nombre, Descripcion, Calorias FROM actividad";
+                                            result = stat.executeQuery(sql);
+                                            //coger el siguiente
+                                            while (result.next()) {
+                                                nombre = result.getString("Nombre");
+                                                descripcion = result.getString("Descripcion");
+                                                calorias = result.getInt("Calorias");
+                                    %>                         
                             <tr><td><%=nombre%></td>
                                 <td><%=descripcion%></td>
                                 <td><%=calorias%></td></tr>
-                                    <%
-                                        //cerramos el while
+                                <%
+                                            //cerramos el while
                                         }
                                         result.close();
                                         stat.close();
