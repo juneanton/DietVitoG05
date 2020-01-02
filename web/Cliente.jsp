@@ -23,7 +23,8 @@
                     <%
                         //ESTO NO ES ASI
                         String email;
-                        email = request.getParameter("email");
+                        //email = request.getParameter("email");
+                        email = (String) request.getAttribute("email");
                      %>
                     <a id ="holaU"><strong>Hola, <%=email%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
                     <p id ="imagenU">imagen</p> 

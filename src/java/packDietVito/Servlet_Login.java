@@ -58,9 +58,11 @@ public class Servlet_Login extends HttpServlet {
                 //TODO OK, es el cliente
                 //guarda los datos
                 HttpSession s = request.getSession();
-                s.setAttribute("email", request.getParameter("correo"));
+                //s.setAttribute("email", request.getParameter("correo"));
+                s.setAttribute("email", email);
                 //cambia la pagina
-                response.sendRedirect("Cliente.jsp");
+                //response.sendRedirect("Cliente.jsp");
+                request.getRequestDispatcher("Cliente.jsp").forward(request, response);
             }
             else {
                 response.sendRedirect("IniciarSesion.jsp");
