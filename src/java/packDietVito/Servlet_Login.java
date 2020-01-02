@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utils.BD;
 
 /**
  * @author June
@@ -53,13 +54,16 @@ public class Servlet_Login extends HttpServlet {
 
                 //cambia la pagina
                 response.sendRedirect("Dietista.jsp");
-            } else if (buscarEmail(email) && buscarContraseña(contra)) {
+            } else if (validar(email, contra)) {
                 //TODO OK, es el cliente
                 //guarda los datos
                 HttpSession s = request.getSession();
                 s.setAttribute("email", request.getParameter("correo"));
                 //cambia la pagina
                 response.sendRedirect("Cliente.jsp");
+            }
+            else {
+                response.sendRedirect("IniciarSesion.jsp");
             }
         }
     }
@@ -81,13 +85,17 @@ public class Servlet_Login extends HttpServlet {
     }
 
     //buscar el email en la bd
-    public boolean buscarEmail(String email) {
+    public boolean validar(String email, String contraseña) {
         boolean encontrado=false;
         try {
+            String e, c;
+            con = BD.getConexion();
             set = con.createStatement();
-            rs = set.executeQuery("SELECT Correo FROM usuario");
+            rs = set.executeQuery("SELECT * FROM usuario");
             while(rs.next() || !encontrado) {
-                if(rs.equals(email)){
+                e = rs.getString("Email");
+                c = rs.getString("Contraseña");
+                if(e.equals(email) && c.equals(contraseña)){
                     encontrado = true;
                 }
             }
@@ -97,11 +105,6 @@ public class Servlet_Login extends HttpServlet {
         return encontrado;
     }
 
-    //Buscar contraseña en la bd
-    public boolean buscarContraseña(String contraseña) {
-        //SIN HACER
-        return true;
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
