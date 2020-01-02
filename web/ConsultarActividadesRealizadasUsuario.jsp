@@ -4,6 +4,12 @@
     Author     : June
 --%>
 
+<%@page import="javax.swing.text.Document"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.BD"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,10 +57,10 @@
             <div align="center">
                 <a> Consultar las actividades: </a>
                 <section id="FormularioCA">
-                    <form name="informacion" method="get" action="procesar.php">
+                    <form name="informacion" method="get" action="SActRealizadas">
                        <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p>Desde: <input type="date" name="fechaI" id="fechaI" required> Hasta: <input type="date" name="fechaF" id="fechaF" required></p>
-                        <p onclick="existeUsu();"><button type="button" id="enviar">Aceptar</button></p>
+                        <p><button type="submit" id="enviar">Aceptar</button></p>
                     </form>
                 </section>
                 
@@ -69,7 +75,51 @@
                         </thead>
                         <tbody id="elementsList">
                             <tr>
-                                <td colspan="3">No hay datos</td>
+                                <td colspan="3">
+                                    <%!
+                                        private Connection con;
+                                        private Statement stat;
+                                        private ResultSet result;
+
+                                        //conectamos a la bd
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+                                    %>
+                                    <%
+                                        try {
+                                            String acti, idUsu, miUsu;
+                                            miUsu = (String) request.getAttribute("miUsu");
+                                            Date fecha, fechaI, fechaF;
+                                            fechaI = (Date) request.getAttribute("fechaI");
+                                            fechaF = (Date) request.getAttribute("fechaF");
+                                            stat = con.createStatement();
+                                            String sql = "SELECT ActividadIDActividad, UsuarioIDUsuario, Fecha FROM actividadrealizada";
+                                            result = stat.executeQuery(sql);
+                                            //coger el siguiente
+                                            while (result.next()) {
+                                                acti = result.getString("ActividadIDActividad");
+                                                idUsu = result.getString("UsuarioIDUsuario");
+                                                fecha = result.getDate("Fecha");
+                                                if(idUsu.equals(miUsu)) {
+//                                                    if(fechaI <= fecha <= fechaF) {
+//                                                        
+//                                                    }
+                                                }
+                                    %>  
+                            <tr><td><%=fecha%></td>
+                                <td><%=acti%></td></tr>
+                                <%
+                                            //cerramos el while
+                                        }
+                                        result.close();
+                                        stat.close();
+                                    } catch (Exception ex) {
+                                        System.out.println("No se puede acceder a la BD " + ex);
+                                        ex.printStackTrace();
+                                    }
+                                %>
+                                    
                             </tr>
                         </tbody>
                     </table>
