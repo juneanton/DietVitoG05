@@ -8,6 +8,10 @@ package packDietVito;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +22,10 @@ import javax.servlet.http.HttpSession;
  * @author June
  */
 public class Servlet_Login extends HttpServlet {
+    
+    private Connection con;
+    private Statement set;
+    private ResultSet rs;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,8 +82,19 @@ public class Servlet_Login extends HttpServlet {
 
     //buscar el email en la bd
     public boolean buscarEmail(String email) {
-        //SIN HACER
-        return true;
+        boolean encontrado=false;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT Correo FROM usuario");
+            while(rs.next() || !encontrado) {
+                if(rs.equals(email)){
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Usuario. " + ex1);
+        }
+        return encontrado;
     }
 
     //Buscar contraseña en la bd
