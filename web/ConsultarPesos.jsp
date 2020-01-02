@@ -20,8 +20,8 @@
                 
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <a id ="holaU"><strong>Hola,  </strong></a> 
-                    <a onload="saludarUsuario();"></a>
+                    <a id ="holaU"><strong>Hola,  </strong></a> nombre
+                    
                    
                     <p id ="imagenU">imagen</p> 
                 </div> 
@@ -52,7 +52,7 @@
             <div align="center">
                 <a> Consultar las calorias </a>
                 <section id="FormularioCp">
-                    <form name="informacion" method="get" action="Pesos">
+                    <form name="informacion" method="post" action="Pesos">
                         <p> Consultar las calorias de: <input type="email" name ="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></p>
                         <p>Desde: <input type="datetime" name="fechaI" id="fechaI" required > Hasta: <input type="datetime" name="fechaF" id="fechaF" required></p>
                         <p><button type="submit" id="enviar">Aceptar</button></p>
