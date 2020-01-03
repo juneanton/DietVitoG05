@@ -65,7 +65,10 @@ public class Servlet_Login extends HttpServlet {
                 
                 String nombre = calcNombre(email);
                 s.setAttribute("nombre", nombre);
-                System.out.println(calcNombre(email));
+                
+                String foto = calcFoto(email);
+                s.setAttribute("foto", foto);
+                
                 //cambia la pagina
                 //response.sendRedirect("Cliente.jsp");
                 request.getRequestDispatcher("Cliente.jsp").forward(request, response);
@@ -128,6 +131,22 @@ public class Servlet_Login extends HttpServlet {
             System.out.println("No lee de la tabla Usuario. " + ex2);
         }             
         return nombre;
+    }
+    
+    public String calcFoto(String email) {
+        String foto = "";
+        try {
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT Foto FROM usuario WHERE Email = '" + email + "';");
+            rs.next();
+            foto = rs.getString("Foto");
+            rs.close();
+            set.close();
+        } catch (SQLException ex2) {
+            System.out.println("No lee de la tabla Usuario. " + ex2);
+        }             
+        return foto;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

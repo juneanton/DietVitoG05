@@ -22,7 +22,7 @@
                 <div style="float: right">
                     
                     <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>
-                    <p id ="imagenU">imagen</p> 
+                    <p id ="imagenU"><img class="normal" src="<%=request.getSession().getAttribute("foto")%>"></p> 
                 </div> 
             </div>
         </header>
