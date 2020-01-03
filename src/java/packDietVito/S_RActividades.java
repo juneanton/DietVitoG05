@@ -6,21 +6,17 @@
 package packDietVito;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import utils.BD;
 
 /**
@@ -48,7 +44,6 @@ public class S_RActividades extends HttpServlet {
         String idUsu = request.getParameter("correo");
         String fechaa = request.getParameter("fecha");
 
-        //Date fecha = metodos.convertir(pfecha);
         Date fecha = Date.valueOf(fechaa);
 
         try {
@@ -56,7 +51,6 @@ public class S_RActividades extends HttpServlet {
             System.out.println("aqui");
             con = BD.getConexion();
             set = con.createStatement();
-            
             
             set.executeUpdate("INSERT INTO actividadrealizada "
                     + "(ActividadIDActividad, UsuarioIDUsuario, Fecha) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "')");

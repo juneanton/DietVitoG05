@@ -5,15 +5,11 @@
  */
 package packDietVito;
 
-import java.awt.BorderLayout;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +56,6 @@ public class Servlet_Login extends HttpServlet {
                 //TODO OK, es el cliente
                 //guarda los datos
                 HttpSession s = request.getSession();
-                //s.setAttribute("email", request.getParameter("correo"));
                 s.setAttribute("email", email);
                 
                 String nombre = calcNombre(email);
@@ -80,7 +75,6 @@ public class Servlet_Login extends HttpServlet {
 
     //comprueba que el email sigue el patron
     public boolean comprobarEmail(String pEmail) {
-        //String pattern = "/^([a-zA-Z]+[a-zA-Z0-9._-]*)@{1}([a-zA-Z0-9\\.]{2,})\\.([a-zA-Z]{2,3})$/";
         String pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return pEmail.matches(pattern);
@@ -88,8 +82,6 @@ public class Servlet_Login extends HttpServlet {
 
     //Comprueba que la contraseña sigue el patron
     public boolean comprobarContraseña(String pContraseña) {
-        //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";  
-        //String pattern = "/^[a-zA-Z0-9]{4,16}$/";
         String pattern = "[a-z0-9]{4,10}";
         return pContraseña.matches(pattern);
     }

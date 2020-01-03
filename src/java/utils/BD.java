@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class BD {
 
     // Referencia a un objeto de la interface java.sql.Connection 

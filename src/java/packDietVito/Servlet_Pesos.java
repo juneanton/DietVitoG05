@@ -6,7 +6,6 @@
 package packDietVito;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,8 +42,7 @@ public class Servlet_Pesos extends HttpServlet {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM peso");
             while (rs.next()) {
-                String cad = rs.getString("Peso");
-                cad = cad.trim();
+                rs.getString("Peso");
             }
             rs.close();
             set.close();

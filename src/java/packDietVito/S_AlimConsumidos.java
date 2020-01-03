@@ -6,7 +6,6 @@
 package packDietVito;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,10 +42,9 @@ public class S_AlimConsumidos extends HttpServlet {
         
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM consumoalimento");
+            rs = set.executeQuery("SELECT * FROM consumoalimento WHERE UsuarioIDUsuario = '"+miUsu+"';");
             while(rs.next()) {
-                String cad = rs.getString("AlimentoISAlimento");
-                cad.trim();
+                rs.getString("AlimentoISAlimento");
             }
         } catch (SQLException ex1) {
             System.out.println("No lee de la tabla Alimentos Consumidos. " + ex1);

@@ -6,7 +6,6 @@
 package packDietVito;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +40,6 @@ public class S_RUsuario extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        //System.out.println("aqui");
         String email = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
         String nombre = request.getParameter("nombre");
@@ -74,10 +72,7 @@ public class S_RUsuario extends HttpServlet {
             }
             else {
                 set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura, Foto) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"', '"+ foto +"')");
-                //set.executeUpdate("INSERT INTO usuario " 
-                //        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura + "')");
-            
+                        + "(Email, Nombre, Contraseña, PesoInicial, Altura, Foto) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"', '"+ foto +"')");         
             }
             response.sendRedirect("RegistrarUsuario.jsp");
         }
