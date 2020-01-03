@@ -26,7 +26,7 @@
                         //email = request.getParameter("email");
                         email = (String) request.getSession().getAttribute("email");
                      %>
-                    <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("Nombre")%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
+                    <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
                     <p id ="imagenU">imagen</p> 
                 </div> 
             </div>
