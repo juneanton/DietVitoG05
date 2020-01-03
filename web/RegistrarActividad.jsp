@@ -26,7 +26,7 @@
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>
-                    <p id ="imagenU"><img class="normal" src="<%=request.getSession().getAttribute("foto")%>"></p> 
+                    <p id ="imagenU"><img class="normal" src="img/<%=request.getSession().getAttribute("foto")%>"></p> 
                 </div> 
             </div>
         </header>
@@ -110,7 +110,7 @@
                                 <option value="Futbol">Fútbol</option>-->
                             </select>
                         </p>
-                        <p>Fecha y hora de la actividad: <input type="date" name="fecha" id ="fecha" required></p>
+                        <p>Fecha de la actividad: <input type="date" name="fecha" id ="fecha" required></p>
                         
                         <p><button type="submit" id="enviarActi">Aceptar</button></p>
                     </form>
