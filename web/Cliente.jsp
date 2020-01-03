@@ -15,7 +15,7 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body>
+    <body action ="Login">
         <header id="cabecera">
             <div>
                 <img src="img/dietvito.png">
@@ -24,9 +24,9 @@
                         //ESTO NO ES ASI
                         String email;
                         //email = request.getParameter("email");
-                        email = (String) request.getAttribute("email");
+                        email = (String) request.getSession().getAttribute("email");
                      %>
-                    <a id ="holaU"><strong>Hola, <%=email%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
+                    <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("Nombre")%> </strong></a>  <!--hay que cambiar tiene que salir el nombre y sale null-->
                     <p id ="imagenU">imagen</p> 
                 </div> 
             </div>

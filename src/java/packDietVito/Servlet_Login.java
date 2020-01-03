@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,7 @@ import utils.BD;
  * @author June
  */
 public class Servlet_Login extends HttpServlet {
-    
+
     private Connection con;
     private Statement set;
     private ResultSet rs;
@@ -60,11 +62,12 @@ public class Servlet_Login extends HttpServlet {
                 HttpSession s = request.getSession();
                 //s.setAttribute("email", request.getParameter("correo"));
                 s.setAttribute("email", email);
+                s.setAttribute("nombre", calcNombre(email));
+                System.out.println(calcNombre(email));
                 //cambia la pagina
                 //response.sendRedirect("Cliente.jsp");
                 request.getRequestDispatcher("Cliente.jsp").forward(request, response);
-            }
-            else {
+            } else {
                 response.sendRedirect("IniciarSesion.jsp");
             }
         }
@@ -88,16 +91,16 @@ public class Servlet_Login extends HttpServlet {
 
     //buscar el email en la bd
     public boolean validar(String email, String contraseña) {
-        boolean encontrado=false;
+        boolean encontrado = false;
         try {
             String e, c;
             con = BD.getConexion();
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM usuario");
-            while(rs.next() || !encontrado) {
+            while (rs.next() || !encontrado) {
                 e = rs.getString("Email");
                 c = rs.getString("Contraseña");
-                if(e.equals(email) && c.equals(contraseña)){
+                if (e.equals(email) && c.equals(contraseña)) {
                     encontrado = true;
                 }
             }
@@ -107,6 +110,22 @@ public class Servlet_Login extends HttpServlet {
         return encontrado;
     }
 
+    public String calcNombre(String email) {
+        String nombre = "";
+        try {
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT Nombre FROM usuario WHERE Email = '" + email + "';");
+            nombre = rs.getString("Nombre");
+            rs.close();
+            set.close();
+        } catch (SQLException ex2) {
+            System.out.println("No lee de la tabla Usuario. " + ex2);
+        }      
+        
+        return nombre;
+        
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
