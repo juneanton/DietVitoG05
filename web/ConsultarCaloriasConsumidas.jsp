@@ -93,12 +93,12 @@
                                             fechaF = (Date) request.getAttribute("fechaF");
                                             stat = con.createStatement();
 //                                            LAS CALORIAAAAAS
-                                            String sql = "SELECT AlimentoIDAlimento, Calorias, IDFecha, UsuarioIDUsuario FROM consumoalimento";
+                                            String sql = "SELECT AlimentoIDAlimento, calorias, IDFecha, UsuarioIDUsuario FROM consumoalimento";
                                             result = stat.executeQuery(sql);
                                             //coger el siguiente
                                             while (result.next()) {
                                                 ali = result.getString("AlimentoIDAlimento");
-                                                cal = result.getInt("Calorias");
+                                                cal = result.getInt("calorias");
                                                 idUsu = result.getString("UsuarioIDUsuario");
                                                 fecha = result.getDate("IDFecha");
                                                 if (idUsu.equals(miUsu)) {
