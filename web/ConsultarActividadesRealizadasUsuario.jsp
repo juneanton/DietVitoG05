@@ -17,7 +17,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Consultar Actividades Usuario</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
@@ -47,7 +46,6 @@
                         <li><a href="ConsultarCaloriasConsumidasUsuario.jsp">Alimentos consumidos por...</a></li>  
                         <li><a href="ConsultarPesosUsuario.jsp">Pesos de...</a></li></ul>
                 </li>
-
 
                 <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>
@@ -110,7 +108,7 @@
                                                     //cerramos ambos if
                                                     }
                                                 }
-                                            //cerramos el while
+                                        //cerramos el while
                                         }
                                         result.close();
                                         stat.close();
@@ -119,7 +117,6 @@
                                         ex.printStackTrace();
                                     }
                                 %>
-
                             </tr>
                         </tbody>
                     </table>

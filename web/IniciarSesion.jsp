@@ -11,14 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Iniciar sesión</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
-        <!--<script src ="js/indexedBD.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
         <header id="cabecera">
-            <div>
-                
+            <div>               
                 <img src="img/dietvito.png">
             </div>
         </header>
@@ -26,12 +23,9 @@
         <nav id = "menuprincipal">
             <ul class="menu">
                 <li><a style ="float:left" href="javascript:history.back()"><img class="pequeña" src="img/flecha.png" /></a></li>
-                <li><a id = "casa" title = "casa" href="Inicio.jsp"><img class="pequeña" src="img/casa.png"/></a></li>
-                
-                <li><a href="Alimentos.jsp">Consultar alimentos</a></li>
-                
-                <li><a href="Actividades.jsp">Consultar actividades</a></li>
-                
+                <li><a id = "casa" title = "casa" href="Inicio.jsp"><img class="pequeña" src="img/casa.png"/></a></li>           
+                <li><a href="Alimentos.jsp">Consultar alimentos</a></li>              
+                <li><a href="Actividades.jsp">Consultar actividades</a></li>  
                 <li style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Iniciar sesión</a></li>
             </ul>
         </nav>

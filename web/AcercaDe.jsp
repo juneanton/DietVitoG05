@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Acerca de DietVito</title>
         <link rel="stylesheet" href="css/estilos.css">
-<!--        <script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>

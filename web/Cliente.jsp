@@ -12,7 +12,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cliente-DietVito</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body action ="Login">
@@ -43,7 +42,7 @@
                             <li><a href="ConsultarPesos.jsp">Pesos  </a></li></ul>
                     </li>
 
-                    <!--CERRAR SESION!!!1-->
+                    <!--CERRAR SESION!!!-->
                     <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
                 </ul>
             </div>

@@ -12,13 +12,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dietista-DietVito</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
         <header id="cabecera">
-            <div>
-               
+            <div>             
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <p><strong>Hola, Dietista</strong></p> 
@@ -40,8 +38,7 @@
                     <ul id = "desple"><li><a href="ConsultarActividadesRealizadasUsuario.jsp">Actividades realizadas por...</a></li>
                         <li><a href="ConsultarCaloriasConsumidasUsuario.jsp">Alimentos consumidos por...</a></li>  
                         <li><a href="ConsultarPesosUsuario.jsp">Pesos de...</a></li></ul>
-                </li>
-                
+                </li>              
                
                 <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>

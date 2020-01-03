@@ -16,13 +16,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Consultar Actividad</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body action ="Login"> 
         <header id="cabecera">
             <div>
-                <!--<h1>DietVito</h1>-->
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>
@@ -108,7 +106,7 @@
                                                     //cerramos ambos if
                                                     }
                                                 }
-                                            //cerramos el while
+                                        //cerramos el while
                                         }
                                         result.close();
                                         stat.close();

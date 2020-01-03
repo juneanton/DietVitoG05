@@ -15,7 +15,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Actividades</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
@@ -40,7 +39,6 @@
                 <p></p>
                 <p id ="imagenActi"><img class="grande" src = "img/deporte2.png"/></p> 
                 <p></p>
-
 
                 <div id="elements">
                     <table width="50%" action="Actividades">
@@ -83,7 +81,7 @@
                                 <td><%=descripcion%></td>
                                 <td><%=calorias%></td></tr>
                                 <%
-                                            //cerramos el while
+                                        //cerramos el while
                                         }
                                         result.close();
                                         stat.close();

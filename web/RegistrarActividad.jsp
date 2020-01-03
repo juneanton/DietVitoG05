@@ -16,13 +16,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Registrar Actividad</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body action ="Login"> 
         <header id="cabecera">
-            <div>
-               
+            <div>           
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>
@@ -45,8 +43,7 @@
                         <li><a href="ConsultarCaloriasConsumidas.jsp">Alimentos consumidos</a></li>  
                         <li><a href="ConsultarPesos.jsp">Pesos</a></li></ul>
                 </li>
-
-                
+              
                 <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>
         </nav>
@@ -86,14 +83,10 @@
                                         //coger el siguiente
                                         while (result.next()) {
                                             nombre = result.getString("Nombre");
-                                            if(nombre != ""){ //para que no coja blancos
-                                                //NO FUNCIONA SIGUE SALIENDO PALABRAS SIN NADA
-                                            
                                 %>                         
-                            <option><%=nombre%></option>
+                            <option value ="<%=nombre%>"><%=nombre%></option>
                               
                                     <%
-                                            }
                                         //cerramos el while
                                         }
                                         result.close();
@@ -103,11 +96,6 @@
                                         ex.printStackTrace();
                                     }
                                 %>
-<!--                            <option value="Correr">Correr</option>
-                                <option value="Nadar">Nadar</option>
-                                <option value="Andar">Andar</option>
-                                <option value="Basket">Basket</option>
-                                <option value="Futbol">Fútbol</option>-->
                             </select>
                         </p>
                         <p>Fecha de la actividad: <input type="date" name="fecha" id ="fecha" required></p>

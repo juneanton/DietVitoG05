@@ -11,19 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Registrar Peso</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
         <header id="cabecera"> 
-            <div>
-               
+            <div>             
                 <img src="img/dietvito.png">
                 <div style="float: right">
                     <p><strong>Hola Dietista</strong></p>
                     <p id ="imagenD"><img class="normal" src="img/dietista_1.jpg"></p>
-                </div>  
-                
+                </div>                
             </div>
         </header>
         
@@ -60,7 +57,6 @@
                         <p><label>Peso: <input type="number" step="0.001" name="peso" id="peso" required></label></p>
 
                         <p><button type="submit" id="enviarPeso">Aceptar</button></p>
-
                     </form>
                 </section>
             </div>

@@ -11,8 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DietVito-Registrar Usuario</title>
         <link rel="stylesheet" href="css/estilos.css">
-        <!--<script src="js/registrarUsuario.js"></script>-->
-        <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
     <body>
@@ -40,7 +38,6 @@
                         <li><a href="ConsultarCaloriasConsumidasUsuario.jsp">Alimentos consumidos por...</a></li>  
                         <li><a href="ConsultarPesosUsuario.jsp">Pesos de...</a></li></ul>
                 </li>
-
                 
                 <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>
@@ -57,7 +54,7 @@
                         <p><label>Peso Inicial: <input type="number" name="peso" id="peso" step="0.001" required></label>kg.</p> 
                         <p><label>Altura: <input type="number" name="altura" id="altura" step="0.001" required></label>cm.</p> 
 
-                        <p>Añada una imagen suya:</p><img id="foto" required>
+                        <p>Añada una foto de perfil:</p><img id="foto" required>
                         <input type="file" name="foto" id="foto" accept=".pdf,.jpg,.png">
                         <p><button type="submit" id="enviar">Aceptar</button></p>
                         <div id="caja" ></div>

@@ -6,7 +6,6 @@
 package packDietVito;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,10 +43,9 @@ public class S_ActRealizadas extends HttpServlet {
         
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM actividadrealizada");
+            rs = set.executeQuery("SELECT * FROM actividadrealizada WHERE UsuarioIDUsuario = '"+miUsu+"';");
             while(rs.next()) {
-                String cad = rs.getString("ActividadIDActividad");
-                cad.trim();
+                rs.getString("ActividadIDActividad");
             }
         } catch (SQLException ex1) {
             System.out.println("No lee de la tabla Actividades Realizadas. " + ex1);
