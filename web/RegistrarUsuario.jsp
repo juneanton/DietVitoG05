@@ -58,6 +58,7 @@
                         <p><label>Altura: <input type="number" name="altura" id="altura" step="0.001" required></label>cm.</p> 
 
                         <p>Añada una imagen suya:</p><img id="foto" required>
+                        <input type="file" name="foto" id="foto" accept=".pdf,.jpg,.png">
                         <p><button type="submit" id="enviar">Aceptar</button></p>
                         <div id="caja" ></div>
 
