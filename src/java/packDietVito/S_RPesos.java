@@ -60,6 +60,7 @@ public class S_RPesos extends HttpServlet {
                 response.sendRedirect("RegistrarPesos.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("RegistrarPesos.jsp");
             }
         } //Si no lo es, reenviar a la página de registro de clientes
         else {

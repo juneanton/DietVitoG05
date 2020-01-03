@@ -44,6 +44,7 @@ public class S_RAlimentos extends HttpServlet {
         String idUsu = request.getParameter("correo");
         String pfecha = request.getParameter("fecha");
         String momento = request.getParameter("opt2");
+        String calorias = "";
 
         Date fecha = Date.valueOf(pfecha);
         try {
@@ -51,10 +52,11 @@ public class S_RAlimentos extends HttpServlet {
             set = con.createStatement();
             set = con.createStatement();
             set.executeUpdate("INSERT INTO consumoAlimento "
-                    + "(IDFecha, IDmomentoDia, AlimentoIDAlimento, UsuarioIDUsuario) VALUES ('" + fecha + "','" + momento + "', '" + idAli +"', '" + idUsu + "')");
+                    + "(IDFecha, IDmomentoDia, AlimentoIDAlimento, UsuarioIDUsuario, calorias) VALUES ('" + fecha + "','" + momento + "', '" + idAli +"', '" + idUsu +"', '" + calorias + "')");
             response.sendRedirect("RegistrarAlimentos.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("RegistrarAlimentos.jsp");
         }
     }
 

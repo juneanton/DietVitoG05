@@ -57,6 +57,7 @@ public class S_RActividades extends HttpServlet {
             response.sendRedirect("RegistrarActividad.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("RegistrarActividad.jsp");
         }
     }
 
