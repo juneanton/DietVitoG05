@@ -42,7 +42,7 @@
                         <li><a href="ConsultarPesosUsuario.jsp">Pesos de...</a></li></ul>
                 </li>
                 
-                <li onclick="cerrarSesion()" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
+                <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>
         </nav>
         

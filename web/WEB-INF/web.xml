@@ -40,6 +40,10 @@
         <servlet-name>S_AlimConsumidos</servlet-name>
         <servlet-class>packDietVito.S_AlimConsumidos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>S_CerrarSesion</servlet-name>
+        <servlet-class>packDietVito.S_CerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>S_AlimConsumidos</servlet-name>
         <url-pattern>/SAlimConsumidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>S_CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
