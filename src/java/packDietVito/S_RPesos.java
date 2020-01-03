@@ -53,24 +53,18 @@ public class S_RPesos extends HttpServlet {
 
         //Si es cliente
         if (validar(cliente)) {
-            //Comprobar qeu ese dia no ha registrado peso
-            if (pesoNoRepetido(cliente, fecha)) {
-                System.out.println("Peso ya registrado");
-                response.sendRedirect("RegistrarPesos.jsp");
-            } else {
-                System.out.println("ENTRA");
-                try {
-                    set = con.createStatement();
-                    set.executeUpdate("INSERT INTO peso "
-                            + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente + "','" + peso + "', '" + fecha + "')");
 
-                    response.sendRedirect("RegistrarPesos.jsp");
-                } catch (SQLException ex) {
-                    Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            System.out.println("ENTRA");
+            try {
+                set = con.createStatement();
+                set.executeUpdate("INSERT INTO peso "
+                        + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente + "','" + peso + "', '" + fecha + "')");
+
+                response.sendRedirect("RegistrarPesos.jsp");
+            } catch (SQLException ex) {
+                Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-        //Si no lo es, reenviar a la página de registro de clientes
+        } //Si no lo es, reenviar a la página de registro de clientes
         else {
             response.sendRedirect("RegistrarUsuario.jsp");
         }
@@ -92,27 +86,6 @@ public class S_RPesos extends HttpServlet {
             }
         } catch (SQLException ex1) {
             System.out.println("No lee de la tabla Usuario. " + ex1);
-        }
-        return encontrado;
-    }
-
-    public boolean pesoNoRepetido(String email, Date fecha) {
-        boolean encontrado = false;
-        try {
-            String e;
-            Date f;
-            con = BD.getConexion();
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM peso");
-            while (rs.next() || !encontrado) {
-                e = rs.getString("UsuarioIDUsuario");
-                f = rs.getDate("Fecha");
-                if (e.equals(email) && f.equals(fecha)) {
-                    encontrado = true;
-                }
-            }
-        } catch (SQLException ex1) {
-            System.out.println("No lee de la tabla Peso. " + ex1);
         }
         return encontrado;
     }
