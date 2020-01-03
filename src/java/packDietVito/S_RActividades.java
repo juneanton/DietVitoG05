@@ -50,23 +50,6 @@ public class S_RActividades extends HttpServlet {
 
         //Date fecha = metodos.convertir(pfecha);
         Date fecha = Date.valueOf(fechaa);
-        
-        //String c;
-
-        //ESTE TRY CREO QUE NO ES NECESARIO PARA REGISTRAR!! MIRAR Y SI ESO QUITARLO
-//        try {
-//            con = BD.getConexion();
-//            set = con.createStatement();
-//            rs = set.executeQuery("SELECT * FROM actividad");
-//            while (rs.next()) {
-//                c = rs.getString("Nombre");
-//                c = c.trim();
-//            }
-//            rs.close();
-//            set.close();
-//        } catch (SQLException ex1) {
-//            System.out.println("No lee de la tabla Actividad. " + ex1);
-//        }
 
         try {
             

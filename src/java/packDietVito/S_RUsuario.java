@@ -73,8 +73,11 @@ public class S_RUsuario extends HttpServlet {
                 System.out.println("Usuario ya registrado");
             }
             else {
+//                set.executeUpdate("INSERT INTO usuario " 
+//                        + "(Email, Nombre, Contraseña, PesoInicial, Altura, Foto) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"', '"+ foto +"')");
                 set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura, Foto) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"', '"+ foto +"')");
+                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura + "')");
+            
             }
             response.sendRedirect("RegistrarUsuario.jsp");
         }
