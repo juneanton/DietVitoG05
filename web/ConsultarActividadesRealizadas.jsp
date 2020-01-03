@@ -19,15 +19,13 @@
         <!--<script src="js/IDB.js"></script>-->
         <link rel="icon" type="image/png" href="img/favicondietvito.png">
     </head>
-    <body> 
+    <body action ="Login"> 
         <header id="cabecera">
             <div>
                 <!--<h1>DietVito</h1>-->
                 <img src="img/dietvito.png">
                 <div style="float: right">
-                    <a id ="holaU"><strong>Hola,  </strong></a> 
-                    nombre
-                     
+                    <a id ="holaU"><strong>Hola, <%=request.getSession().getAttribute("nombre")%> </strong></a>
                     <p id ="imagenU">imagen</p> 
                 </div> 
             </div>
