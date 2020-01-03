@@ -47,8 +47,7 @@ public class S_RUsuario extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String pesoI = request.getParameter("peso");
         String altura = request.getParameter("altura");
-        //foto?
-        
+        String foto = request.getParameter("foto");        
         
         boolean existe = false;
         try {
@@ -75,7 +74,7 @@ public class S_RUsuario extends HttpServlet {
             }
             else {
                 set.executeUpdate("INSERT INTO usuario " 
-                        + "(Email, Nombre, Contraseña, PesoInicial, Altura) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"')");
+                        + "(Email, Nombre, Contraseña, PesoInicial, Altura, Foto) VALUES ('" + email +"','"+ nombre + "', '"+ contrasena + "', '"+ pesoI +"', '"+ altura +"', '"+ foto +"')");
             }
             response.sendRedirect("RegistrarUsuario.jsp");
         }
