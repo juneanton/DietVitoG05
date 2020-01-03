@@ -50,8 +50,6 @@ public class S_RPesos extends HttpServlet {
 
         //Si es cliente
         if (validar(cliente)) {
-
-            System.out.println("ENTRA");
             try {
                 set = con.createStatement();
                 set.executeUpdate("INSERT INTO peso "

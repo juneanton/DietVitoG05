@@ -89,12 +89,12 @@
                                             fechaI = (Date) request.getAttribute("fechaI");
                                             fechaF = (Date) request.getAttribute("fechaF");
                                             stat = con.createStatement();
-                                            String sql = "SELECT Peso, UsuarioIDUsuario, Fecha FROM peso";
+                                            String sql = "SELECT Peso, usuarioEmail, Fecha FROM peso";
                                             result = stat.executeQuery(sql);
                                             //coger el siguiente
                                             while (result.next()) {
                                                 peso = result.getFloat("Peso");
-                                                idUsu = result.getString("UsuarioIDUsuario");
+                                                idUsu = result.getString("usuarioEmail");
                                                 fecha = result.getDate("Fecha");
                                                 if (idUsu.equals(miUsu)) {
                                                     if (fecha.after(fechaI) && fecha.before(fechaF)) {
