@@ -71,6 +71,10 @@ public class Servlet_Login extends HttpServlet {
                 response.sendRedirect("IniciarSesion.jsp");
             }
         }
+        else {
+            response.sendRedirect("IniciarSesion.jsp");
+        }
+            
     }
 
     //comprueba que el email sigue el patron
