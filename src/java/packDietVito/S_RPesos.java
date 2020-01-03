@@ -57,7 +57,7 @@ public class S_RPesos extends HttpServlet {
             try {
                 set = con.createStatement();
                 set.executeUpdate("INSERT INTO peso "
-                        + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente + "','" + peso + "', '" + fecha + "')");
+                        + "(usuarioEmail, Peso, Fecha) VALUES ('" + cliente + "','" + peso + "', '" + fecha + "')");
 
                 response.sendRedirect("RegistrarPesos.jsp");
             } catch (SQLException ex) {
