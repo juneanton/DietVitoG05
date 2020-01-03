@@ -30,7 +30,9 @@ public class S_RPesos extends HttpServlet {
     private Connection con;
     private Statement set;
     private ResultSet rs;
-    
+
+    String c;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,23 +47,74 @@ public class S_RPesos extends HttpServlet {
         String cliente = request.getParameter("correo");
         String pFecha = request.getParameter("fecha");
         String peso = request.getParameter("peso");
-        
+
         //Date fecha = metodos.convertir(pFecha);
         Date fecha = Date.valueOf(pFecha);
-        
+
+        //Si es cliente
+        if (validar(cliente)) {
+            //Comprobar qeu ese dia no ha registrado peso
+            if (pesoNoRepetido(cliente, fecha)) {
+                System.out.println("Peso ya registrado");
+                response.sendRedirect("RegistrarPesos.jsp");
+            } else {
+                System.out.println("ENTRA");
+                try {
+                    set = con.createStatement();
+                    set.executeUpdate("INSERT INTO peso "
+                            + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente + "','" + peso + "', '" + fecha + "')");
+
+                    response.sendRedirect("RegistrarPesos.jsp");
+                } catch (SQLException ex) {
+                    Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } 
+        //Si no lo es, reenviar a la página de registro de clientes
+        else {
+            response.sendRedirect("RegistrarUsuario.jsp");
+        }
+    }
+
+    //buscar que el email es de un usuario registrado
+    public boolean validar(String email) {
+        boolean encontrado = false;
         try {
+            String e;
             con = BD.getConexion();
             set = con.createStatement();
-            
-            set.executeUpdate("INSERT INTO peso " 
-                        + "(UsuarioIDUSuario, Peso, Fecha) VALUES ('" + cliente +"','"+ peso + "', '"+ fecha +"')");
-            
-            rs.close();
-            set.close();
-            response.sendRedirect("RegistrarPesos.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+            rs = set.executeQuery("SELECT * FROM usuario");
+            while (rs.next() || !encontrado) {
+                e = rs.getString("Email");
+                if (e.equals(email)) {
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Usuario. " + ex1);
         }
+        return encontrado;
+    }
+
+    public boolean pesoNoRepetido(String email, Date fecha) {
+        boolean encontrado = false;
+        try {
+            String e;
+            Date f;
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM peso");
+            while (rs.next() || !encontrado) {
+                e = rs.getString("UsuarioIDUsuario");
+                f = rs.getDate("Fecha");
+                if (e.equals(email) && f.equals(fecha)) {
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Peso. " + ex1);
+        }
+        return encontrado;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -98,9 +151,8 @@ public class S_RPesos extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+//    @Override
+//    public String getServletInfo() {
+//        return "Short description";
+//    }// </editor-fold>
 }
