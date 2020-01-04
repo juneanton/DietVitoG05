@@ -53,7 +53,7 @@
             <div align="center">
                 <a> Consultar las actividades: </a>
                 <section id="FormularioCA">
-                    <form name="informacion" method="get" action="SActRealizadas"> 
+                    <form name="informacion" method="get" action="ActRealizadasYo"> 
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p>Desde: <input type="date" name="fechaI" id="fechaI" required> Hasta: <input type="date" name="fechaF" id="fechaF" required></p>
                         <p><button type="submit" id="enviar">Aceptar</button></p>

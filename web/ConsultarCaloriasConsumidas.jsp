@@ -55,7 +55,7 @@
             <div align="center">
                 <a> Consultar los alimentos consumidos: </a>
                 <section id="FormularioCC">
-                    <form name="informacion" method="post" action="SAlimConsumidos"> 
+                    <form name="informacion" method="post" action="AlimConsumidosYo"> 
                         <p><label>Correo: <input type="email" name="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label></p>
                         <p>Desde: <input type="date" name="fechaI" id="fechaI" required> Hasta: <input type="date" name="fechaF" id="fechaF" required></p>
                         <p><button type="submit" id="enviar">Aceptar</button></p>
