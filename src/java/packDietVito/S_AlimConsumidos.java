@@ -52,6 +52,7 @@ public class S_AlimConsumidos extends HttpServlet {
         int cal;
         
         Hashtable<Date, Hashtable<String, Integer>> paraMostrar = new Hashtable<Date, Hashtable<String, Integer>>();
+        Hashtable<String, Integer> dentro = new Hashtable<String, Integer>();
         
         try {
             if (validar(cliente)) {
@@ -67,19 +68,27 @@ public class S_AlimConsumidos extends HttpServlet {
                         //Si es entre las fechas que buscamos
                          if (fecha.after(fechaI) && fecha.before(fechaF)) {
                                 //Meter en el array la fecha y el peso
-                                
+                                dentro.put(alim, cal);
+                                paraMostrar.put(fecha, dentro);
                          }
                     } 
                 }
                 HttpSession s = request.getSession();
                 s.setAttribute("paraMostrar", paraMostrar);
+                System.out.println(paraMostrar);
                 request.getRequestDispatcher("ConsultarCaloriasConsumidasUsuario.jsp").forward(request, response);
                 rs.close();
                 set.close();
             }
+            else {
+                response.sendRedirect("RegistrarUsuario.jsp");
+            }
         } catch (SQLException ex1) {
             System.out.println("No lee de la tabla Alimentos Consumidos. " + ex1);
-            response.sendRedirect("RegistrarUsuario.jsp");
+        }
+        
+        if (paraMostrar == null) {
+            response.sendRedirect("ConsultarCaloriasConsumidasUsuario.jsp");
         }
 
     }
