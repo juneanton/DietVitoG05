@@ -111,7 +111,7 @@ public class Servlet_Pesos extends HttpServlet {
                     set.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
-                    response.sendRedirect("ConsultarPesos.jsp");
+                    response.sendRedirect("ConsultarPesosUsuario.jsp");
                 }
                 
                 HttpSession s = request.getSession();
