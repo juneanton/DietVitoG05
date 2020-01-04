@@ -4,6 +4,8 @@
     Author     : June
 --%>
 
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.Enumeration"%>
 <%@page import="javax.swing.text.Document"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.sql.ResultSet"%>
@@ -86,40 +88,27 @@
                                         }
                                     %>
                                     <%
-                                        try {
-                                            String acti, idUsu, miUsu;
-                                            int calorias;
-                                            miUsu = (String) request.getAttribute("miUsu");
-                                            Date fecha, fechaI, fechaF;
-                                            fechaI = (Date) request.getAttribute("fechaI");
-                                            fechaF = (Date) request.getAttribute("fechaF");
-                                            stat = con.createStatement();
-                                            String sql = "SELECT ActividadIDActividad, UsuarioIDUsuario, Fecha FROM actividadrealizada";
-                                            result = stat.executeQuery(sql);
-                                            //coger el siguiente
-                                            while (result.next()) {
-                                                acti = result.getString("ActividadIDActividad");
-                                                idUsu = result.getString("UsuarioIDUsuario");
-                                                fecha = result.getDate("Fecha");
-                                                calorias = result.getInt("calorias");
-                                                if (idUsu.equals(miUsu)) {
-                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                        Hashtable<Date, Hashtable<String, Integer>> paraMostrar = null;
+                                        paraMostrar = (Hashtable<Date, Hashtable<String, Integer>>) session.getAttribute("paraMostrar");
+                                        if (paraMostrar != null) {
+                                            Enumeration fechas = paraMostrar.keys();
+                                            while (fechas.hasMoreElements()) {
+                                                Date fecha = (Date) fechas.nextElement();
+                                                //Float peso = paraMostrar.get(fecha);
+                                                Enumeration alimentos = paraMostrar.get(fechas).keys();
+                                                while (alimentos.hasMoreElements()) {
+                                                    String acti = (String) alimentos.nextElement();
+                                                    Integer cal = (Integer) paraMostrar.get(fecha).get(acti);
                                     %>  
                             <tr><td><%=fecha%></td>
                                 <td><%=acti%></td>
-                                <td><%=calorias%></tr>
+                                <td><%=cal%></tr>
                                 <%
                                                     //cerramos ambos if
                                                     }
                                                 }
                                         //cerramos el while
                                         }
-                                        result.close();
-                                        stat.close();
-                                    } catch (Exception ex) {
-                                        System.out.println("No se puede acceder a la BD " + ex);
-                                        ex.printStackTrace();
-                                    }
                                 %>
                             </tr>
                         </tbody>
