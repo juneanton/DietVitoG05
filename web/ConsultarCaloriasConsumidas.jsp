@@ -4,6 +4,8 @@
     Author     : June
 --%>
 
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -84,41 +86,25 @@
                                         }
                                     %>
                                     <%
-                                        try {
-                                            String ali, idUsu, miUsu;
-                                            miUsu = (String) request.getAttribute("miUsu");
-                                            int cal;
-                                            Date fecha, fechaI, fechaF;
-                                            fechaI = (Date) request.getAttribute("fechaI");
-                                            fechaF = (Date) request.getAttribute("fechaF");
-                                            stat = con.createStatement();
-//                                            LAS CALORIAAAAAS
-                                            String sql = "SELECT AlimentoIDAlimento, calorias, IDFecha, UsuarioIDUsuario FROM consumoalimento";
-                                            result = stat.executeQuery(sql);
-                                            //coger el siguiente
-                                            while (result.next()) {
-                                                ali = result.getString("AlimentoIDAlimento");
-                                                cal = result.getInt("calorias");
-                                                idUsu = result.getString("UsuarioIDUsuario");
-                                                fecha = result.getDate("IDFecha");
-                                                if (idUsu.equals(miUsu)) {
-                                                    
-                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                        Hashtable<Date, Hashtable<String, Integer>> paraMostrar = null;
+                                        paraMostrar = (Hashtable<Date, Hashtable<String, Integer>>) session.getAttribute("paraMostrar");
+                                        if (paraMostrar != null) {
+                                            Enumeration fechas = paraMostrar.keys();
+                                            while (fechas.hasMoreElements()) {
+                                                Date fecha = (Date) fechas.nextElement();
+                                                //Float peso = paraMostrar.get(fecha);
+                                                Enumeration alimentos = paraMostrar.get(fechas).keys();
+                                                while (alimentos.hasMoreElements()) {
+                                                    String ali = (String) alimentos.nextElement();
+                                                    Integer cal = (Integer) paraMostrar.get(fecha).get(ali);
                                     %>  
                             <tr><td><%=fecha%></td>
                                 <td><%=ali%></td>
                                 <td><%=cal%></td></tr>
                                 <%
-                                                    //cerramos ambos if
-                                                    }
-                                                }
-                                        //cerramos el while
+                                                //cerramos
+                                            }
                                         }
-                                        result.close();
-                                        stat.close();
-                                    } catch (Exception ex) {
-                                        System.out.println("No se puede acceder a la BD " + ex);
-                                        ex.printStackTrace();
                                     }
                                 %>
                             </tr>
