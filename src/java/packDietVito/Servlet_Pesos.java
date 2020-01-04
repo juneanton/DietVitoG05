@@ -100,13 +100,13 @@ public class Servlet_Pesos extends HttpServlet {
                             if (fecha.after(fechaI) && fecha.before(fechaF)) {
                                 //Meter en el array la fecha y el peso
                                 paraMostrar.put(fecha, peso);
-                            } else {
-                                response.sendRedirect("ConsultarPesosUsurio.jsp");
                             }
-                        } else {
-                            response.sendRedirect("ConsultarPesosUsuario.jsp");
                         }
                     }
+                    HttpSession s = request.getSession();
+                s.setAttribute("paraMostrar", paraMostrar);
+                //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
+                request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
                     rs.close();
                     set.close();
                 } catch (SQLException ex) {
@@ -114,16 +114,17 @@ public class Servlet_Pesos extends HttpServlet {
                     response.sendRedirect("ConsultarPesosUsuario.jsp");
                 }
                 
-                HttpSession s = request.getSession();
-                s.setAttribute("paraMostrar", paraMostrar);
-                //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
-                request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
-
-            } else {
-                response.sendRedirect("RegistrarUsuario.jsp");
+//                HttpSession s = request.getSession();
+//                s.setAttribute("paraMostrar", paraMostrar);
+//                //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
+//                request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
             }
+//            } else {
+////                response.sendRedirect("RegistrarUsuario.jsp");
+//            }
         } catch (IOException ex) {
             Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("RegistrarUsuario.jsp");
         }
 
     }
