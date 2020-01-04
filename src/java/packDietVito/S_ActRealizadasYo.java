@@ -7,10 +7,18 @@ package packDietVito;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import utils.BD;
 
 /**
  *
@@ -18,6 +26,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class S_ActRealizadasYo extends HttpServlet {
 
+    private Connection con;
+    private Statement set;
+    private ResultSet rs;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,19 +41,75 @@ public class S_ActRealizadasYo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet S_ActRealizadasYo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet S_ActRealizadasYo at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String cliente = request.getParameter("correo");
+        String pfechaI = request.getParameter("fechaI");
+        String pfechaF = request.getParameter("fechaF");
+        
+        Date fechaI = Date.valueOf(pfechaI);
+        Date fechaF = Date.valueOf(pfechaF);
+
+        Date fecha;
+        String acti, u;
+        int cal;
+        
+        Hashtable<Date, Hashtable<String, Integer>> paraMostrar = new Hashtable<Date, Hashtable<String, Integer>>();
+        Hashtable<String, Integer> dentro = new Hashtable<String, Integer>();
+        
+        try {
+           if (validar(cliente)) {
+                set = con.createStatement();
+                rs = set.executeQuery("SELECT * FROM actividadrealizada");
+                while (rs.next()) {
+                    fecha = rs.getDate("Fecha");
+                    acti = rs.getString("ActividadIDActividad");
+                    cal = rs.getInt("calorias");
+                    u = rs.getString("UsuarioIDUsuario");
+                    //Si es el usuario que buscamos
+                    if(u.equals(cliente)) {
+                        //Si es entre las fechas que buscamos
+                         if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                //Meter en el array la fecha y el peso
+                                dentro.put(acti, cal);
+                                paraMostrar.put(fecha, dentro);
+                         }
+                    } 
+                }
+                HttpSession s = request.getSession();
+                s.setAttribute("paraMostrar", paraMostrar);
+                System.out.println(paraMostrar);
+                request.getRequestDispatcher("ConsultarActividadesRealizadas.jsp").forward(request, response);
+                rs.close();
+                set.close();
+            }
+           else {
+               response.sendRedirect("ConsultarActividadesRealizadas.jsp");
+           }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Actividades Realizadas. " + ex1);
         }
+        
+         if (paraMostrar == null) {
+            response.sendRedirect("ConsultarActividadesRealizadas.jsp");
+        }
+        }
+    
+    public boolean validar(String email) {
+        boolean encontrado = false;
+        try {
+            String e;
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM usuario");
+            while (rs.next() || !encontrado) {
+                e = rs.getString("Email");
+                if (e.equals(email)) {
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Usuario. " + ex1);
+        }
+        return encontrado;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,7 +138,7 @@ public class S_ActRealizadasYo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**
