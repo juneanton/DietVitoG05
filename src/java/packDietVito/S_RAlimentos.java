@@ -26,7 +26,7 @@ import utils.BD;
 public class S_RAlimentos extends HttpServlet {
 
     private Connection con;
-    private Statement set;
+    private Statement set, st;
     private ResultSet rs;
     
     /**
@@ -51,12 +51,18 @@ public class S_RAlimentos extends HttpServlet {
             con = BD.getConexion();
             set = con.createStatement();
             set = con.createStatement();
+            
+            st = con.createStatement();
+            rs = st.executeQuery("Select CaloriasAli from alimento WHERE NombreAli = '"+idAli+"';");
+            while (rs.next()) {
+                calorias = rs.getString("CaloriasAli");
+            }
             set.executeUpdate("INSERT INTO consumoAlimento "
                     + "(IDFecha, IDmomentoDia, AlimentoIDAlimento, UsuarioIDUsuario, calorias) VALUES ('" + fecha + "','" + momento + "', '" + idAli +"', '" + idUsu +"', '" + calorias + "')");
-            response.sendRedirect("RegistrarAlimentos.jsp");
+            response.sendRedirect("RegistrarAlimento.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("RegistrarAlimentos.jsp");
+            response.sendRedirect("RegistrarAlimento.jsp");
         }
     }
 
