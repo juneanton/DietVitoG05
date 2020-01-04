@@ -69,6 +69,7 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Actividad</th>
+                                <th>Calorias</th>
                             </tr>
                         </thead>
                         <tbody id="elementsList">
@@ -87,6 +88,7 @@
                                     <%
                                         try {
                                             String acti, idUsu, miUsu;
+                                            int calorias;
                                             miUsu = (String) request.getAttribute("miUsu");
                                             Date fecha, fechaI, fechaF;
                                             fechaI = (Date) request.getAttribute("fechaI");
@@ -99,11 +101,13 @@
                                                 acti = result.getString("ActividadIDActividad");
                                                 idUsu = result.getString("UsuarioIDUsuario");
                                                 fecha = result.getDate("Fecha");
+                                                calorias = result.getInt("calorias");
                                                 if (idUsu.equals(miUsu)) {
                                                     if (fecha.after(fechaI) && fecha.before(fechaF)) {
                                     %>  
                             <tr><td><%=fecha%></td>
-                                <td><%=acti%></td></tr>
+                                <td><%=acti%></td>
+                                <td><%=calorias%></tr>
                                 <%
                                                     //cerramos ambos if
                                                     }
