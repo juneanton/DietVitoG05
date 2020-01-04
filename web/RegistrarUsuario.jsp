@@ -57,7 +57,7 @@
                         <p>Añada una foto de perfil:</p><img id="foto" required>
                         <input type="file" name="foto" id="foto" accept=".pdf,.jpg,.png">
                         <p><button type="submit" id="enviar">Aceptar</button></p>
-                        <div id="caja" ></div>
+                        <!--<div id="caja" ></div>-->
 
                     </form>
                 </section>
