@@ -7,9 +7,12 @@ package packDietVito;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,98 +38,99 @@ public class Servlet_Pesos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            con = BD.getConexion();
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM peso");
-            while (rs.next()) {
-                rs.getString("Peso");
-            }
-            rs.close();
-            set.close();
-        } catch (SQLException ex1) {
-            System.out.println("No lee de la tabla Pesos. " + ex1);
-        }
-    }
-//protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
-//        String cliente = request.getParameter("correo");
-//        String pfechaI = request.getParameter("fechaI");
-//        String pfechaF = request.getParameter("fechaF");
-//
-//        Date fechaI = Date.valueOf(pfechaI);
-//        Date fechaF = Date.valueOf(pfechaF);
-//        
-//        String u;
-//        Float peso;
-//        Date fecha;
-//
-//        //Si es cliente registradi
-//        if (validar(cliente)) {
-//            try {
-//                set = con.createStatement();
-//                rs = set.executeQuery("SELECT * FROM peso");
-//                while (rs.next()) {
-//                    peso = rs.getFloat("Peso");
-//                    u = rs.getString("usuarioEmail");
-//                    fecha = rs.getDate("Fecha");
-//                    if (u.equals(cliente)) {
-//                        if (fecha.after(fechaI) && fecha.before(fechaF)) {
-//                            
-//                        }
-//                        else {
-//                            response.sendRedirect("ConsultarPesos.jsp");
-//                        }
-//                    }
-//                    else {
-//                        response.sendRedirect("ConsultarPesos.jsp");
-//                    }
-//                }
-//                    rs.close();
-//                    set.close();
-//                }catch (SQLException ex) {
-//                Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
-//                response.sendRedirect("ConsultarPesos.jsp");
-//            }
-//
-//            }else {
-//            response.sendRedirect("RegistrarUsuario.jsp");
-//        }
-//
-//            try {
-//                con = BD.getConexion();
-//                set = con.createStatement();
-//                rs = set.executeQuery("SELECT * FROM peso");
-//                while (rs.next()) {
-//                    rs.getString("Peso");
-//                }
-//                rs.close();
-//                set.close();
-//            } catch (SQLException ex1) {
-//                System.out.println("No lee de la tabla Pesos. " + ex1);
-//            }
-//        }
-//        //buscar que el email es de un usuario registrado
-//    public boolean validar(String email) {
-//        boolean encontrado = false;
 //        try {
-//            String e;
 //            con = BD.getConexion();
 //            set = con.createStatement();
-//            rs = set.executeQuery("SELECT * FROM usuario");
-//            while (rs.next() || !encontrado) {
-//                e = rs.getString("Email");
-//                if (e.equals(email)) {
-//                    encontrado = true;
-//                }
+//            rs = set.executeQuery("SELECT * FROM peso");
+//            while (rs.next()) {
+//                rs.getString("Peso");
 //            }
+//            rs.close();
+//            set.close();
 //        } catch (SQLException ex1) {
-//            System.out.println("No lee de la tabla Usuario. " + ex1);
+//            System.out.println("No lee de la tabla Pesos. " + ex1);
 //        }
-//        return encontrado;
 //    }
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String cliente = request.getParameter("correo");
+        String pfechaI = request.getParameter("fechaI");
+        String pfechaF = request.getParameter("fechaF");
+
+        Date fechaI = Date.valueOf(pfechaI);
+        Date fechaF = Date.valueOf(pfechaF);
+        
+        String u;
+        Float peso;
+        Date fecha;
+        boolean ok = false;
+
+        //Si es cliente registrado
+        if (validar(cliente)) {
+            try {
+                set = con.createStatement();
+                rs = set.executeQuery("SELECT * FROM peso");
+                while (rs.next()) {
+//                    peso = rs.getFloat("Peso");
+                    u = rs.getString("usuarioEmail");
+                    fecha = rs.getDate("Fecha");
+                    if (u.equals(cliente)) {
+                        if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                            peso = rs.getFloat("Peso");
+                        }
+                        else {
+                            response.sendRedirect("ConsultarPesos.jsp");
+                        }
+                    }
+                    else {
+                        response.sendRedirect("ConsultarPesos.jsp");
+                    }
+                }
+                    rs.close();
+                    set.close();
+                }catch (SQLException ex) {
+                Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("ConsultarPesos.jsp");
+            }
+
+            }else {
+            response.sendRedirect("RegistrarUsuario.jsp");
+        }
+
+            try {
+                con = BD.getConexion();
+                set = con.createStatement();
+                rs = set.executeQuery("SELECT * FROM peso");
+                while (rs.next()) {
+                    rs.getString("Peso");
+                }
+                rs.close();
+                set.close();
+            } catch (SQLException ex1) {
+                System.out.println("No lee de la tabla Pesos. " + ex1);
+            }
+        }
+        //buscar que el email es de un usuario registrado
+    public boolean validar(String email) {
+        boolean encontrado = false;
+        try {
+            String e;
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM usuario");
+            while (rs.next() || !encontrado) {
+                e = rs.getString("Email");
+                if (e.equals(email)) {
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Usuario. " + ex1);
+        }
+        return encontrado;
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
