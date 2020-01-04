@@ -41,21 +41,6 @@ public class Servlet_Pesos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        try {
-//            con = BD.getConexion();
-//            set = con.createStatement();
-//            rs = set.executeQuery("SELECT * FROM peso");
-//            while (rs.next()) {
-//                rs.getString("Peso");
-//            }
-//            rs.close();
-//            set.close();
-//        } catch (SQLException ex1) {
-//            System.out.println("No lee de la tabla Pesos. " + ex1);
-//        }
-//    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cliente = request.getParameter("correo");
@@ -114,14 +99,7 @@ public class Servlet_Pesos extends HttpServlet {
                     response.sendRedirect("ConsultarPesosUsuario.jsp");
                 }
                 
-//                HttpSession s = request.getSession();
-//                s.setAttribute("paraMostrar", paraMostrar);
-//                //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
-//                request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
             }
-//            } else {
-////                response.sendRedirect("RegistrarUsuario.jsp");
-//            }
         } catch (IOException ex) {
             Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
             response.sendRedirect("RegistrarUsuario.jsp");
