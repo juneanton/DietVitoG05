@@ -93,7 +93,7 @@
                                             while (fechas.hasMoreElements()) {
                                                 Date fecha = (Date) fechas.nextElement();
                                                 //Float peso = paraMostrar.get(fecha);
-                                                Enumeration alimentos = paraMostrar.get(fechas).keys();
+                                                Enumeration alimentos = paraMostrar.get(fecha).keys();
                                                 while (alimentos.hasMoreElements()) {
                                                     String ali = (String) alimentos.nextElement();
                                                     Integer cal = (Integer) paraMostrar.get(fecha).get(ali);
