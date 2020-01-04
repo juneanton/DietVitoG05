@@ -89,11 +89,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                             paraMostrar.put(fecha, peso);
                         }
                         else {
-                            response.sendRedirect("ConsultarPesos.jsp");
+                            response.sendRedirect("ConsultarPesosUsurio.jsp");
                         }
                     }
                     else {
-                        response.sendRedirect("ConsultarPesos.jsp");
+                        response.sendRedirect("ConsultarPesosUsuario.jsp");
                     }
                 }
                     rs.close();
