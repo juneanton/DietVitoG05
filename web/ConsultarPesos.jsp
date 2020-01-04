@@ -55,7 +55,7 @@
             <div align="center">
                 <a> Consultar los pesos </a>
                 <section id="FormularioCp">
-                    <form name="informacion" method="post" action="Pesos">
+                    <form name="informacion" method="post" action="PesosYo">
                         <p> Consultar los pesos de: <input type="email" name ="correo" id="correo" required placeholder="ejemplo@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></p>
                         <p>Desde: <input type="date" name="fechaI" id="fechaI" required > Hasta: <input type="date" name="fechaF" id="fechaF" required></p>
                         <p><button type="submit" id="enviar">Aceptar</button></p>

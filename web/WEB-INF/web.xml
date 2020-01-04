@@ -44,6 +44,10 @@
         <servlet-name>S_CerrarSesion</servlet-name>
         <servlet-class>packDietVito.S_CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_PesosYo</servlet-name>
+        <servlet-class>packDietVito.Servlet_PesosYo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>S_CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_PesosYo</servlet-name>
+        <url-pattern>/PesosYo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
