@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import utils.BD;
 
 /**
@@ -55,7 +56,7 @@ public class Servlet_Pesos extends HttpServlet {
 //            System.out.println("No lee de la tabla Pesos. " + ex1);
 //        }
 //    }
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cliente = request.getParameter("correo");
         String pfechaI = request.getParameter("fechaI");
@@ -63,68 +64,71 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
         Date fechaI = Date.valueOf(pfechaI);
         Date fechaF = Date.valueOf(pfechaF);
-        
+
         String u;
         Float peso;
         Date fecha;
-        
-       // ArrayList<ArrayList<Float>> paraMostrar = new ArrayList<ArrayList<Float>>();
 
-       Hashtable<Date, Float> paraMostrar = new Hashtable<Date, Float>();
-       
-        //Si es cliente registrado
-        if (validar(cliente)) {
-            try {
-                set = con.createStatement();
-                rs = set.executeQuery("SELECT * FROM peso");
-                while (rs.next()) {
-                    peso = rs.getFloat("Peso");
-                    u = rs.getString("usuarioEmail");
-                    fecha = rs.getDate("Fecha");
-                    //Si es el usuario que buscamos
-                    if (u.equals(cliente)) {
-                        //Si es entre las fechas que buscamos
-                        if (fecha.after(fechaI) && fecha.before(fechaF)) {
-                            //Meter en el array la fecha y el peso
-                            paraMostrar.put(fecha, peso);
-                        }
-                        else {
-                            response.sendRedirect("ConsultarPesosUsurio.jsp");
+        // ArrayList<ArrayList<Float>> paraMostrar = new ArrayList<ArrayList<Float>>();
+        Hashtable<Date, Float> paraMostrar = new Hashtable<Date, Float>();
+
+        try {
+            con = BD.getConexion();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM peso");
+            while (rs.next()) {
+                rs.getString("Peso");
+            }
+            rs.close();
+            set.close();
+        } catch (SQLException ex1) {
+            System.out.println("No lee de la tabla Pesos. " + ex1);
+        }
+        try {
+            //Si es cliente registrado
+            if (validar(cliente)) {
+                try {
+                    set = con.createStatement();
+                    rs = set.executeQuery("SELECT * FROM peso");
+                    while (rs.next()) {
+                        peso = rs.getFloat("Peso");
+                        u = rs.getString("usuarioEmail");
+                        fecha = rs.getDate("Fecha");
+                        //Si es el usuario que buscamos
+                        if (u.equals(cliente)) {
+                            //Si es entre las fechas que buscamos
+                            if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                //Meter en el array la fecha y el peso
+                                paraMostrar.put(fecha, peso);
+                            } else {
+                                response.sendRedirect("ConsultarPesosUsurio.jsp");
+                            }
+                        } else {
+                            response.sendRedirect("ConsultarPesosUsuario.jsp");
                         }
                     }
-                    else {
-                        response.sendRedirect("ConsultarPesosUsuario.jsp");
-                    }
-                }
                     rs.close();
                     set.close();
-                }catch (SQLException ex) {
-                Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect("ConsultarPesos.jsp");
-            }
-
-            request.setAttribute("paraMostrar", paraMostrar);
-            //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
-            request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
-            
-            }else {
-            response.sendRedirect("RegistrarUsuario.jsp");
-        }
-
-            try {
-                con = BD.getConexion();
-                set = con.createStatement();
-                rs = set.executeQuery("SELECT * FROM peso");
-                while (rs.next()) {
-                    rs.getString("Peso");
+                } catch (SQLException ex) {
+                    Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+                    response.sendRedirect("ConsultarPesos.jsp");
                 }
-                rs.close();
-                set.close();
-            } catch (SQLException ex1) {
-                System.out.println("No lee de la tabla Pesos. " + ex1);
+                
+                HttpSession s = request.getSession();
+                s.setAttribute("paraMostrar", paraMostrar);
+                //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
+                request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
+
+            } else {
+                response.sendRedirect("RegistrarUsuario.jsp");
             }
+        } catch (IOException ex) {
+            Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //buscar que el email es de un usuario registrado
+
+    }
+    //buscar que el email es de un usuario registrado
+
     public boolean validar(String email) {
         boolean encontrado = false;
         try {
@@ -143,6 +147,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         }
         return encontrado;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
