@@ -4,6 +4,8 @@
     Author     : June
 --%>
 
+<%@page import="java.util.Enumeration"%>
+<%@page import="java.util.Hashtable"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -44,7 +46,7 @@
                         <li><a href="ConsultarCaloriasConsumidasUsuario.jsp">Alimentos consumidos por...</a></li>  
                         <li><a href="ConsultarPesosUsuario.jsp">Pesos de...</a></li></ul>
                 </li>
-                
+
                 <li action ="CerrarSesion" id = "CS" style="float:right" ><a href="IniciarSesion.jsp"><img class ="pequeña" src = "img/usuario.png">  Cerrar sesión</a></li>
             </ul>
         </nav>
@@ -81,38 +83,37 @@
                                         }
                                     %>
                                     <%
-                                        try {
-                                            String idUsu, miUsu;
-                                            miUsu = (String) request.getAttribute("miUsu");
-                                            float peso;
-                                            Date fecha, fechaI, fechaF;
-                                            fechaI = (Date) request.getAttribute("fechaI");
-                                            fechaF = (Date) request.getAttribute("fechaF");
-                                            stat = con.createStatement();
-                                            String sql = "SELECT Peso, usuarioEmail, Fecha FROM peso";
-                                            result = stat.executeQuery(sql);
-                                            //coger el siguiente
-                                            while (result.next()) {
-                                                peso = result.getFloat("Peso");
-                                                idUsu = result.getString("usuarioEmail");
-                                                fecha = result.getDate("Fecha");
-                                                if (idUsu.equals(miUsu)) {
-                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+//                                        try {
+//                                            String idUsu, miUsu;
+//                                            miUsu = (String) request.getAttribute("miUsu");
+//                                            float peso;
+//                                            Date fecha, fechaI, fechaF;
+//                                            fechaI = (Date) request.getAttribute("fechaI");
+//                                            fechaF = (Date) request.getAttribute("fechaF");
+//                                            stat = con.createStatement();
+//                                            String sql = "SELECT Peso, usuarioEmail, Fecha FROM peso";
+//                                            result = stat.executeQuery(sql);
+//                                            //coger el siguiente
+//                                            while (result.next()) {
+//                                                peso = result.getFloat("Peso");
+//                                                idUsu = result.getString("usuarioEmail");
+//                                                fecha = result.getDate("Fecha");
+//                                                if (idUsu.equals(miUsu)) {
+//                                                    if (fecha.after(fechaI) && fecha.before(fechaF)) {
+                                        Hashtable<Date, Float> paraMostrar = null;
+                                        paraMostrar = (Hashtable<Date, Float>) session.getAttribute("paraMostrar");
+                                        if (paraMostrar != null) {
+                                            Enumeration fechas = paraMostrar.keys();
+                                            while(fechas.hasMoreElements()) {
+                                            Date fecha = (Date) fechas.nextElement();
+                                            Float peso = paraMostrar.get(fecha);
                                     %>  
                             <tr><td><%=fecha%></td>
                                 <td><%=peso%></td></tr>
                                 <%
-                                                    //cerramos ambos if
-                                                    }
-                                                }
-                                        //cerramos el while
-                                        }
-                                        result.close();
-                                        stat.close();
-                                    } catch (Exception ex) {
-                                        System.out.println("No se puede acceder a la BD " + ex);
-                                        ex.printStackTrace();
+                                            //cerramos ambos if
                                     }
+                                        } 
                                 %>
                             </tr>
                         </tbody>

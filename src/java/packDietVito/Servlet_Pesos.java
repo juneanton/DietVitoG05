@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -65,20 +67,26 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         String u;
         Float peso;
         Date fecha;
-        boolean ok = false;
+        
+       // ArrayList<ArrayList<Float>> paraMostrar = new ArrayList<ArrayList<Float>>();
 
+       Hashtable<Date, Float> paraMostrar = new Hashtable<Date, Float>();
+       
         //Si es cliente registrado
         if (validar(cliente)) {
             try {
                 set = con.createStatement();
                 rs = set.executeQuery("SELECT * FROM peso");
                 while (rs.next()) {
-//                    peso = rs.getFloat("Peso");
+                    peso = rs.getFloat("Peso");
                     u = rs.getString("usuarioEmail");
                     fecha = rs.getDate("Fecha");
+                    //Si es el usuario que buscamos
                     if (u.equals(cliente)) {
+                        //Si es entre las fechas que buscamos
                         if (fecha.after(fechaI) && fecha.before(fechaF)) {
-                            peso = rs.getFloat("Peso");
+                            //Meter en el array la fecha y el peso
+                            paraMostrar.put(fecha, peso);
                         }
                         else {
                             response.sendRedirect("ConsultarPesos.jsp");
@@ -95,6 +103,10 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                 response.sendRedirect("ConsultarPesos.jsp");
             }
 
+            request.setAttribute("paraMostrar", paraMostrar);
+            //request.getRequestDispatcher("ConsultarPesos.jsp").forward(request, response);
+            request.getRequestDispatcher("ConsultarPesosUsuario.jsp").forward(request, response);
+            
             }else {
             response.sendRedirect("RegistrarUsuario.jsp");
         }
