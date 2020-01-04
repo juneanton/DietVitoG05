@@ -26,7 +26,7 @@ import utils.BD;
 public class S_RActividades extends HttpServlet {
 
     private Connection con;
-    private Statement set;
+    private Statement set, st;
     private ResultSet rs;
 
     /**
@@ -43,17 +43,22 @@ public class S_RActividades extends HttpServlet {
         String idAct = request.getParameter("opt");
         String idUsu = request.getParameter("correo");
         String fechaa = request.getParameter("fecha");
+        String calorias ="";
 
         Date fecha = Date.valueOf(fechaa);
 
         try {
-            
-            System.out.println("aqui");
             con = BD.getConexion();
             set = con.createStatement();
             
+            st = con.createStatement();
+            rs = st.executeQuery("Select calorias from actividad WHERE Nombre = '"+idAct+"';");
+            while (rs.next()) {
+                calorias = rs.getString("calorias");
+            }
+            
             set.executeUpdate("INSERT INTO actividadrealizada "
-                    + "(ActividadIDActividad, UsuarioIDUsuario, Fecha) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "')");
+                    + "(ActividadIDActividad, UsuarioIDUsuario, Fecha, calorias) VALUES ('" + idAct + "','" + idUsu + "', '" + fecha + "', '" + calorias + "')");
             response.sendRedirect("RegistrarActividad.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Actividades.class.getName()).log(Level.SEVERE, null, ex);
