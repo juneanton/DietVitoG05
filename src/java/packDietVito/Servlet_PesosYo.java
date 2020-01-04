@@ -96,13 +96,16 @@ public class Servlet_PesosYo extends HttpServlet {
                     set.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(S_RPesos.class.getName()).log(Level.SEVERE, null, ex);
+                }  
+                if(paraMostrar == null) {
                     response.sendRedirect("ConsultarPesos.jsp");
                 }
-                
+            }
+            else {
+                response.sendRedirect("ConsultarPesos.jsp");
             }
         } catch (IOException ex) {
             Logger.getLogger(S_RUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("ConsultarPesos.jsp");
         }
 
     }
